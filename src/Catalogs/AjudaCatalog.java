@@ -3,6 +3,7 @@ package Catalogs;
 import java.util.HashMap;
 import java.util.Map;
 import Ajudas.Ajuda;
+import Users.Migrante;
 
 public class AjudaCatalog {
 	private static AjudaCatalog instance;
@@ -23,5 +24,9 @@ public class AjudaCatalog {
 	
 	public void registarAjuda(int id, Ajuda ajuda){
 		catalog.put(id, ajuda);
+	}
+	
+	public Ajuda obterAjuda(int id) {
+		return catalog.get(id);
 	}
 }
