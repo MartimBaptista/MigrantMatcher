@@ -1,5 +1,40 @@
 package Builders;
 
-public class AjudaBuilder {
+import Users.*;
+import Ajudas.*;
 
+public class AjudaBuilder {
+	private Migrante migrante;
+	private Voluntario voluntario;
+	private String descricao;
+	private int capacidade;
+	private String regiao;
+	
+	public void setMigrante(Migrante migrante) {
+		this.migrante = migrante;
+	}
+	
+	public void setVoluntario(Voluntario voluntario) {
+		this.voluntario = voluntario;
+	}
+	
+	public void setDescription(String descricao) {
+		this.descricao = descricao;
+	}
+	
+	public void setCapacidade(int capacidade) {
+		this.capacidade = capacidade;
+	}
+	
+	public void setRegiao(String regiao) {
+		this.regiao = regiao;
+	}
+	
+	public Alojamento getAlojamento() {
+		return new Alojamento(migrante, voluntario, capacidade, regiao);
+	}
+	
+	public Item getItem() {
+		return new Item(migrante, voluntario, descricao);
+	}
 }
