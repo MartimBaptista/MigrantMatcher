@@ -23,5 +23,5 @@ public class RegistaAjudaHandler {
 	 * 
 	 * }
 	 */
-	
+	//As regioes teem de ser de uma lista predefenida
 }
