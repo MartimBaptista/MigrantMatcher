@@ -3,14 +3,14 @@ package Ajudas;
 import Users.*;;
 
 public class Item extends Ajuda {
-	private String discricao;
+	private String descricao;
 
-	public Item(Migrante migrante, Voluntario voluntario, String discricao) {
+	public Item(Migrante migrante, Voluntario voluntario, String descricao) {
 		super(migrante, voluntario);
-		this.discricao = discricao;
+		this.descricao = descricao;
 	}
 
 	public String getDescricao() {
-		return discricao;
+		return descricao;
 	}
 }
