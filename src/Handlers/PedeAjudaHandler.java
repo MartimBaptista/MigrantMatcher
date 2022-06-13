@@ -1,10 +1,24 @@
 package Handlers;
 
+import Ajudas.Ajuda;
+import Builders.MigranteBuilder;
+import Catalogs.AjudaCatalog;
+import Catalogs.MigranteCatalog;
+import Catalogs.VoluntarioCatalog;
+import Users.Migrante;
+
 public class PedeAjudaHandler {
 	private static PedeAjudaHandler instance;
+	private VoluntarioCatalog voluntarioCatalog;
+	private AjudaCatalog ajudaCatalog;
+	private MigranteCatalog migranteCatalog;
+	private MigranteBuilder mb;
 
 	private PedeAjudaHandler() {
-		//TODO
+		voluntarioCatalog = VoluntarioCatalog.getInstance();
+		ajudaCatalog = AjudaCatalog.getInstance();
+		migranteCatalog = MigranteCatalog.getInstance();
+		mb = new MigranteBuilder();
 	}
 
 	public static PedeAjudaHandler getInstance() {
@@ -13,5 +27,39 @@ public class PedeAjudaHandler {
 		} else {
 			return instance;
 		}
+	}
+	
+	public void indicaMigrante(String nome, String tele) {
+		mb.setNome(nome);
+		mb.setTele(tele);
+	}
+	
+	public void indicaNumFamilia(int num) {
+		mb.setFamiliaSize(num);
+	}
+	
+	public void indicaFamiliar(String nome) {
+		mb.addFamiliar(nome);
+	}
+
+	public void indicaRegiao(String reg) {
+		//TODO	
+	}
+	
+	public void ativarNotificacao() {
+		//TODO	
+	}
+	
+	public void notificaDepois() {
+		//TODO	
+	}
+	
+	public void indicaAjuda(Ajuda ajuda) {
+		//TODO	
+	}
+	
+	public void confirmar() {
+		Migrante mig = mb.getMigrante();
+		migranteCatalog.set(mig.getTele(), mig);
 	}
 }

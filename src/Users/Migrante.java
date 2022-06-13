@@ -15,5 +15,9 @@ public class Migrante {
 		this.tele = tele;
 		this.familia = familia;
 	}
+	
+	public String getTele() {
+		return this.tele;
+	}
 
 }
