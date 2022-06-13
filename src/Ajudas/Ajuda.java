@@ -11,11 +11,11 @@ public abstract class Ajuda {
 		this.voluntario = voluntario;
 	}
 
-	Migrante getMigrante() {
+	public Migrante getMigrante() {
 		return migrante;
 	}
 
-	Voluntario getvoluntario() {
+	public Voluntario getvoluntario() {
 		return voluntario;
 	}
 }
