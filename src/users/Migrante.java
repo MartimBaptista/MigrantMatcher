@@ -1,4 +1,4 @@
-package users;
+package Users;
 
 public class Migrante {
 	private String nome;
@@ -14,6 +14,10 @@ public class Migrante {
 		this.nome = nome;
 		this.tele = tele;
 		this.familia = familia;
+	}
+	
+	public String getTele() {
+		return this.tele;
 	}
 
 }
