@@ -2,9 +2,9 @@ package Users;
 
 public class Voluntario {
 	
-	private int tele;
+	private String tele;
 	
-	public Voluntario(int tele) {
+	public Voluntario(String tele) {
 		this.tele = tele;
 	}
 
