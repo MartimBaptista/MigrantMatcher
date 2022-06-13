@@ -2,6 +2,7 @@ package ajudas;
 
 import users.*;
 
+
 public abstract class Ajuda {
 	protected Migrante migrante;
 	protected Voluntario voluntario;

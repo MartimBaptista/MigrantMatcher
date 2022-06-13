@@ -1,6 +1,6 @@
-package Builders;
+package builders;
 
-import Users.Migrante;
+import users.Migrante;
 
 public class MigranteBuilder {
 	private String nome;

@@ -1,11 +1,9 @@
-package Handlers;
+package handlers;
 
-import Ajudas.Ajuda;
-import Builders.MigranteBuilder;
-import Catalogs.AjudaCatalog;
-import Catalogs.MigranteCatalog;
-import Catalogs.VoluntarioCatalog;
-import Users.Migrante;
+import catalogs.*;
+import ajudas.Ajuda;
+import builders.MigranteBuilder;
+import users.Migrante;
 
 public class PedeAjudaHandler {
 	private static PedeAjudaHandler instance;
