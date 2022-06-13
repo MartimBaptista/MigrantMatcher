@@ -1,7 +1,23 @@
 package Handlers;
-import Ajudas.*;
+
 
 public class RegistaAjudaHandler {
+	private static RegistaAjudaHandler instance;
+
+	private RegistaAjudaHandler() {
+		//TODO
+	}
+
+	public static RegistaAjudaHandler getInstance() {
+		if (instance == null) {
+			return new RegistaAjudaHandler();
+		} else {
+			return instance;
+		}
+	}
+	
+	
+	
 	
 	/*
 	 * private Ajuda ajuda;
