@@ -1,11 +1,14 @@
 package SMS;
 
-import com.pidgeonsmssender.sdk.PidgeonSMSSender;
+import com.telegramsms.TelegramSMSSender;
 
-public class TelegramSMSAdapter implements SMSSender {
+public class TelegramSMSAdapter implements SMSAdapterInterface {
 
 	@Override
 	public void sendSMS(String tele, String message) {
-		new PidgeonSMSSender().send(tele, message);
+		TelegramSMSSender sender = new TelegramSMSSender();
+		sender.setNumber(tele);
+		sender.setText(message);
+		sender.send();
 	}
 }
