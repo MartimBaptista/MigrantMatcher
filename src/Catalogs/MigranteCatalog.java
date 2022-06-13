@@ -1,13 +1,14 @@
 package Catalogs;
 
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 
 import Users.Migrante;
 
-public class MigranteCatalog {
+public class MigranteCatalog implements CatalogInterface<Migrante> {
 	private static MigranteCatalog instance;
-	private Map<Integer, Migrante> catalog;
+	private Map<String, Migrante> catalog;
 
 	private MigranteCatalog() {
 		catalog = new HashMap<>();
@@ -21,11 +22,19 @@ public class MigranteCatalog {
 		}
 	}
 
-	public void registarMigrante(int tele, Migrante migrante) {
+	@Override
+	public void set(String tele, Migrante migrante) {
 		catalog.put(tele, migrante);
 	}
 
-	public Migrante obterMigrante(int tele) {
+	@Override
+	public Migrante get(String tele) {
 		return catalog.get(tele);
 	}
+
+	@Override
+	public Iterator<Migrante> getIterator() {
+		return catalog.values().iterator();
+	}
+
 }

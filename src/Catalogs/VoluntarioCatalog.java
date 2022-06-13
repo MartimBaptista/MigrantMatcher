@@ -1,13 +1,14 @@
 package Catalogs;
 
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 
 import Users.Voluntario;
 
-public class VoluntarioCatalog {
+public class VoluntarioCatalog implements CatalogInterface<Voluntario> {
 	private static VoluntarioCatalog instance;
-	private Map<Integer, Voluntario> catalog;
+	private Map<String, Voluntario> catalog;
 
 	private VoluntarioCatalog() {
 		catalog = new HashMap<>();
@@ -21,11 +22,18 @@ public class VoluntarioCatalog {
 		}
 	}
 
-	public void registarVoluntario(int tele, Voluntario voluntario) {
+	@Override
+	public void set(String tele, Voluntario voluntario) {
 		catalog.put(tele, voluntario);
 	}
 
-	public Voluntario obterVoluntario(int tele) {
+	@Override
+	public Voluntario get(String tele) {
 		return catalog.get(tele);
+	}
+
+	@Override
+	public Iterator<Voluntario> getIterator() {
+		return catalog.values().iterator();
 	}
 }
