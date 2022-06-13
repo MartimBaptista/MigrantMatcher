@@ -6,6 +6,6 @@
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/marti/Downloads/smsproviders.jar"/>
+	<classpathentry kind="lib" path="smsproviders.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
