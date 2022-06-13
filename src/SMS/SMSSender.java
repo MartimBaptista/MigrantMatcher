@@ -1,7 +1,7 @@
 package SMS;
 
 public class SMSSender {
-	public void sendSMS(String tele, String message) {
+	public static void sendSMS(String tele, String message) {
 		new PidgeonSMSAdapter().sendSMS(tele, message);
 		//OR
 		new TelegramSMSAdapter().sendSMS(tele, message);
