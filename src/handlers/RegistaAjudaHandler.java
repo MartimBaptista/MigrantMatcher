@@ -11,10 +11,11 @@ import users.Voluntario;
 
 public class RegistaAjudaHandler {
 	private static RegistaAjudaHandler instance;
-	private VoluntarioCatalog voluntarioCatalog;
-	private AjudaCatalog ajudaCatalog;
 	private Voluntario voluntario;
+	private VoluntarioCatalog voluntarioCatalog;
 	private AjudaBuilder ab;
+	private AjudaCatalog ajudaCatalog;
+	private SMSSender smsSender;
 	private String sentCode;
 	private int idConter;
 
@@ -22,6 +23,7 @@ public class RegistaAjudaHandler {
 		voluntarioCatalog = VoluntarioCatalog.getInstance();
 		ajudaCatalog = AjudaCatalog.getInstance();
 		ab = new AjudaBuilder();
+		smsSender = SMSSender.getInstance();
 		idConter = 0;
 	}
 
@@ -52,7 +54,7 @@ public class RegistaAjudaHandler {
 	public void enviarCodigo() {
 		sentCode = String.valueOf(new Random().nextInt(0, 100000));
 		String message = "O seu código é: " + sentCode;
-		SMSSender.sendSMS(voluntario.getTele(), message);
+		smsSender.sendSMS(voluntario.getTele(), message);
 		System.out.println("[System: Sent message: \"" + message + "\" ]");
 	}
 
