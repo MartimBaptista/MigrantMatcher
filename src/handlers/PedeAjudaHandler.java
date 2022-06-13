@@ -52,12 +52,13 @@ public class PedeAjudaHandler {
 		//TODO	
 	}
 	
-	public void indicaAjuda(Ajuda ajuda) {
+	public void indicaAjuda(Ajuda ajuda) { //pode escolher varias
 		//TODO	
 	}
 	
 	public void confirmar() {
 		Migrante mig = mb.getMigrante();
 		migranteCatalog.set(mig.getTele(), mig);
+		//TODO
 	}
 }

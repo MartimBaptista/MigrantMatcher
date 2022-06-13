@@ -1,5 +1,7 @@
 import java.util.Scanner;
-import java.io.*;
+
+import handlers.PedeAjudaHandler;
+import handlers.RegistaAjudaHandler;
 
 public class MMpseudo {
 	
@@ -29,74 +31,110 @@ public class MMpseudo {
 	}
 
 	private static void iniciarOfertaDeAjuda(Scanner sc) {
+		RegistaAjudaHandler ajudaHandler = RegistaAjudaHandler.getInstance();
 		System.out.println("Insira o seu numero de telemovel:");  
-		int numTel = sc.nextInt();
-		//criar voluntario inicializado com numero de telemovel - indentificarVoluntario(tele) ???
+		String numTel = sc.nextLine();
+		ajudaHandler.indicaVoluntario(numTel);
 		System.out.println("Insira o seu tipo de ajuda:");
 		String tipoAjuda = sc.nextLine();
 		if (tipoAjuda.equals("Alojamento")) {
-			//iniciar ajuda do tipo de alojamento
-			//onde se indica o numero de pessoas possiveis de alojar
-			//provavelmente noutra class
+			System.out.println("Indique a quantidade de pessoas que o seu alojamento pode albergar");
+			int room = sc.nextInt();
+			ajudaHandler.indicaNumDePessoas(room);
 			
-			//o sistema devolve lista regiões
-			//o voluntario diz qual a região
-			// .contains("regiao")
+			// TODO devolver lista de regiões
 			
-			//criar Ajuda do tipo Alojamento com região e num de pessoas indicados
+			System.out.println("Escreva o nome da região do seu alojamento:");
+			String regEscolhida = sc.nextLine();
+			ajudaHandler.indicaRegiao(regEscolhida);
 		}
 		else  {
 			System.out.println("Descreva o seu item:");
 			String desc = sc.nextLine();
-			//Criar ajuda do tipo Item com descrição = desc;
-			
+			ajudaHandler.descreveItem(desc);	
 		}
-		//SMS STUFF
-		
+		ajudaHandler.enviarCodigo();
+		System.out.println("Insira o código recebido para confirmar a sua oferta de ajuda:");
+		boolean confirmado = false;
+		String userInput;
+		while (!confirmado) {
+			userInput = sc.nextLine();
+			confirmado = ajudaHandler.confirmaCodigo(userInput);
+		}
+		if (tipoAjuda.equals("Alojamento")) {
+			ajudaHandler.finalizarAjudaAlojamento();
+		}
+		else {
+			ajudaHandler.finalizarAjudaItem();
+		}
 	}
 
 	private static void iniciarPedidoDeAjuda(Scanner sc) {
+		PedeAjudaHandler pedeAjudaHandler = PedeAjudaHandler.getInstance();
 		System.out.println("Pretende registar-se individualmente ou com familia?");
 		String registoTipo = sc.nextLine();
 		if (registoTipo.equals("individualmente")) {
-			//indentificarMigrante()
+			System.out.println("Indique o seu nome:");
+			String nome = sc.nextLine();
+			System.out.println("Indique o seu numero de telefone:");
+			String numTel = sc.nextLine();
+			pedeAjudaHandler.indicaMigrante(nome, numTel);
 		}
 		else if (registoTipo.equals("familia")) {
-			//perguntar e receber o cabeça
+			System.out.println("Indique a quantidade de pessoas que existem na familia:");
+			int numPessoas = sc.nextInt();
+			pedeAjudaHandler.indicaNumFamilia(numPessoas);
+			System.out.println("Insira o nome do cabeça de familia:");
+			String nome = sc.nextLine();
+			System.out.println("Indique o seu numero de telefone:");
+			String numTel = sc.nextLine();
+			pedeAjudaHandler.indicaMigrante(nome, numTel);
 			
-			System.out.println("Indique agora os dados de outros familiares");
-			System.out.println("Quando não tiver mais membros a adicionar escreva 'stop'");
-			Boolean running = true;
-			while (running) {
-				System.out.println("Indique o nome:");
+			System.out.println("Indique agora os nomes de outros familiares");
+			for (int i = 0; i < numPessoas; i++) {
+				System.out.println("Indique o nome do "+(i+1)+" familiar:");
 				String nomeAgora = sc.nextLine();
-				if (nomeAgora.equals("stop")) {
-					running = false;
-				}
-				System.out.println("Indique o numero de telemovel:");
-				int contacto = sc.nextInt();
-				//push this member to wherever we are pushing
+				pedeAjudaHandler.indicaFamiliar(nomeAgora);
 			}
-			//push them all together
-			
-			//give regioes
-			//Migrant chooses regiao
-			
-			//extensão 5a: A regiao não tem ajudas
-			//extensão 6: Perguntamos ao Migrante se quer se notificado quando houver
-			//5)  devolver Ajudas (alojamento e outros) dessa regiao   (ORDENAR POR DATA DE DISPONIBILIZAÇÃO CRESCENTE ou
-			                                                         // Outra forma será primeiro por alojamentos, depois pelos outros items, ordenados dentro de cada categoria de forma aleatória.
-			
-			//loop
-			//6)  migrant chooses Ajuda das disponiveis
-			
-			//migrant confirma
-			
-			//atribuir a(s) Ajuda(s) ao Migrant
-			//contactar voluntario por SMS
 		}
 		
+		//TODO mostrar lista de regioes
+		
+		System.out.println("Indique uma regiao para onde se podera mover:");
+		String regiao = sc.nextLine();
+		pedeAjudaHandler.indicaRegiao(regiao);
+		
+		//TODO devolver as ajudas nesta regiao
+		//5)  devolver Ajudas (alojamento e outros) dessa regiao   (ORDENAR POR DATA DE DISPONIBILIZAÇÃO CRESCENTE ou
+        // Outra forma será primeiro por alojamentos, depois pelos outros items, ordenados dentro de cada categoria de forma aleatória.
+		
+		//TODO extensão 5a: A regiao não tem ajudas
+		/*
+		  TODO OOPS, esta regiao não tem ajudas!
+		  System.out.println("A regiao escolhida nao tem nenhuma ajuda disponivel neste momento.");
+		  //extensão 6:
+		  System.out.println("Pretende ser notificado por sms quando existir? (y/n)");
+		  String resposta = sc.nextLine();
+		  if (resposta.equals("y")) {
+		  	then do extra SMS stuff TODO
+		  }
+		 */
+		
+		//TODO devolver lista de ajudas
+		
+		System.out.println("Escolha que ajuda(s) pretende usufruir, escreva 'stop' quando bastar");
+		String sinal = "OK";
+		while (!sinal.equals("stop")) {
+			sinal = sc.nextLine();
+			
+			//TODO escolher ajudas
+		}
+		
+		//TODO confirm
+		//TODO atribuir ajuda e contactar voluntarios
 	}
+		
+}
 	
 
-}
+
