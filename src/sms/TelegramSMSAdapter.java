@@ -2,7 +2,7 @@ package sms;
 
 import com.telegramsms.TelegramSMSSender;
 
-public class TelegramSMSAdapter implements SMSAdapterInterface {
+public class TelegramSMSAdapter implements SMSAdapter {
 
 	@Override
 	public void sendSMS(String tele, String message) {

@@ -1,10 +1,25 @@
 package sms;
 
+import config.Configuration;
+
 public class SMSSender {
-	public static void sendSMS(String tele, String message) {
-		new PidgeonSMSAdapter().sendSMS(tele, message);
-		//OR
-		new TelegramSMSAdapter().sendSMS(tele, message);
-		//TODO Implement the config as to pick one of the 2 adapters
+	private static SMSSender instance;
+	private SMSAdapter provider;
+
+	private SMSSender() {
+		Configuration config = Configuration.getInstance();
+		provider = config.getInstanceOfClass("smsProvider", new PidgeonSMSAdapter());
+	}
+
+	public static SMSSender getInstance() {
+		if (instance == null) {
+			return new SMSSender();
+		} else {
+			return instance;
+		}
+	}
+
+	public void sendSMS(String tele, String message) {
+		provider.sendSMS(tele, message);
 	}
 }
