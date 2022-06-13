@@ -1,7 +1,7 @@
-package Builders;
+package builders;
 
-import Users.*;
-import Ajudas.*;
+import ajudas.*;
+import users.*;
 
 public class AjudaBuilder {
 	private Migrante migrante;

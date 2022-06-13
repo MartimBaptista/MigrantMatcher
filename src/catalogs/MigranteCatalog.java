@@ -1,10 +1,10 @@
-package Catalogs;
+package catalogs;
 
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
-import Users.Migrante;
+import users.Migrante;
 
 public class MigranteCatalog implements CatalogInterface<Migrante> {
 	private static MigranteCatalog instance;

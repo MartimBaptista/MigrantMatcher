@@ -1,4 +1,4 @@
-package SMS;
+package sms;
 
 public class SMSSender {
 	public static void sendSMS(String tele, String message) {

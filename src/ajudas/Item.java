@@ -1,6 +1,6 @@
-package Ajudas;
+package ajudas;
 
-import Users.*;;
+import users.*;;
 
 public class Item extends Ajuda {
 	private String descricao;

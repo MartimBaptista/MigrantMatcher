@@ -1,4 +1,4 @@
-package Users;
+package users;
 
 public class Migrante {
 	private String nome;

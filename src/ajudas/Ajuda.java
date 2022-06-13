@@ -1,6 +1,6 @@
-package Ajudas;
+package ajudas;
 
-import Users.*;
+import users.*;
 
 public abstract class Ajuda {
 	protected Migrante migrante;

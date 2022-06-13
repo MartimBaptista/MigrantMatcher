@@ -1,6 +1,6 @@
-package Ajudas;
+package ajudas;
 
-import Users.*;
+import users.*;
 
 public class Alojamento extends Ajuda {
 	private int capacidade;

@@ -1,9 +1,10 @@
-package Catalogs;
+package catalogs;
 
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
-import Ajudas.Ajuda;
+
+import ajudas.Ajuda;
 
 public class AjudaCatalog implements CatalogInterface<Ajuda> {
 	private static AjudaCatalog instance;

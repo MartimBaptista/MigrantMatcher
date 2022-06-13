@@ -1,4 +1,4 @@
-package SMS;
+package sms;
 
 import com.pidgeonsmssender.sdk.PidgeonSMSSender;
 

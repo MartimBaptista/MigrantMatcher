@@ -1,13 +1,13 @@
-package Handlers;
+package handlers;
 
 import java.util.Random;
 
-import Ajudas.Ajuda;
-import Builders.AjudaBuilder;
-import Catalogs.AjudaCatalog;
-import Catalogs.VoluntarioCatalog;
-import SMS.SMSSender;
-import Users.Voluntario;
+import ajudas.Ajuda;
+import builders.AjudaBuilder;
+import catalogs.AjudaCatalog;
+import catalogs.VoluntarioCatalog;
+import sms.SMSSender;
+import users.Voluntario;
 
 public class RegistaAjudaHandler {
 	private static RegistaAjudaHandler instance;

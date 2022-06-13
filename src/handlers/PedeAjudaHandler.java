@@ -1,4 +1,4 @@
-package Handlers;
+package handlers;
 
 public class PedeAjudaHandler {
 	private static PedeAjudaHandler instance;

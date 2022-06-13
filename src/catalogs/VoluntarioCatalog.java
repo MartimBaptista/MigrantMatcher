@@ -1,10 +1,10 @@
-package Catalogs;
+package catalogs;
 
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
-import Users.Voluntario;
+import users.Voluntario;
 
 public class VoluntarioCatalog implements CatalogInterface<Voluntario> {
 	private static VoluntarioCatalog instance;
