@@ -1,5 +1,6 @@
 package ajudas;
 
+import notificacoes.Notificador;
 import users.*;
 
 public class Alojamento extends Ajuda {
@@ -10,6 +11,7 @@ public class Alojamento extends Ajuda {
 		super(id, voluntario);
 		this.capacidade = capacity;
 		this.regiao = regiao;
+		Notificador.getInstance().notificar(regiao);
 	}
 
 	public int getCapacity() {
