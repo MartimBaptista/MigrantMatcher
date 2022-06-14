@@ -9,25 +9,16 @@ import builders.MigranteBuilder;
 import users.Migrante;
 
 public class PedeAjudaHandler {
-	private static PedeAjudaHandler instance;
 	private VoluntarioCatalog voluntarioCatalog;
 	private AjudaCatalog ajudaCatalog;
 	private MigranteCatalog migranteCatalog;
 	private MigranteBuilder mb;
 
-	private PedeAjudaHandler() {
+	public PedeAjudaHandler() {
 		voluntarioCatalog = VoluntarioCatalog.getInstance();
 		ajudaCatalog = AjudaCatalog.getInstance();
 		migranteCatalog = MigranteCatalog.getInstance();
 		mb = new MigranteBuilder();
-	}
-
-	public static PedeAjudaHandler getInstance() {
-		if (instance == null) {
-			return new PedeAjudaHandler();
-		} else {
-			return instance;
-		}
 	}
 	
 	public void indicaMigrante(String nome, String tele) {

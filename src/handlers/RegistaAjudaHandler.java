@@ -10,7 +10,6 @@ import sms.SMSSender;
 import users.Voluntario;
 
 public class RegistaAjudaHandler {
-	private static RegistaAjudaHandler instance;
 	private Voluntario voluntario;
 	private VoluntarioCatalog voluntarioCatalog;
 	private AjudaBuilder ab;
@@ -19,20 +18,12 @@ public class RegistaAjudaHandler {
 	private String sentCode;
 	private int idConter;
 
-	private RegistaAjudaHandler() {
+	public RegistaAjudaHandler(SMSSender smsSender) {
 		voluntarioCatalog = VoluntarioCatalog.getInstance();
 		ajudaCatalog = AjudaCatalog.getInstance();
 		ab = new AjudaBuilder();
-		smsSender = SMSSender.getInstance();
+		this.smsSender = smsSender;
 		idConter = 0;
-	}
-
-	public static RegistaAjudaHandler getInstance() {
-		if (instance == null) {
-			return new RegistaAjudaHandler();
-		} else {
-			return instance;
-		}
 	}
 
 	public void indicaVoluntario(String tele) {
