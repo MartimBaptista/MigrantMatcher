@@ -6,17 +6,17 @@ import users.*;
 
 
 public abstract class Ajuda {
-	protected LocalDateTime submitedTime;
+	protected int id;
 	protected Migrante migrante;
 	protected Voluntario voluntario;
 
-	protected Ajuda(Voluntario voluntario) {
-		this.submitedTime = LocalDateTime.now();
+	protected Ajuda(int id, Voluntario voluntario) {
+		this.id = id;
 		this.voluntario = voluntario;
 	}
 	
-	public LocalDateTime getSubmitedTime() {
-		return submitedTime;
+	public int getId() {
+		return id;
 	}
 	
 	public Voluntario getvoluntario() {
