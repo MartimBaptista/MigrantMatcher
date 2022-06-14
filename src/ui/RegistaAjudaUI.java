@@ -70,11 +70,11 @@ public class RegistaAjudaUI {
 		}
 
 		// 3.3
-		System.out.print("Insira o numero da região do seu alojamento: ");
 		boolean stillSelecting = true;
 		int index = -1;
 		sc.nextLine();
 		while (stillSelecting) {
+			System.out.print("Insira o numero da região do seu alojamento: ");
 			index = Integer.valueOf(sc.nextLine()) - 1;
 			if(index >= 0 && index < REGIOES.length)
 				stillSelecting = false;
