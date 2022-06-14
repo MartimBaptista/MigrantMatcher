@@ -23,7 +23,7 @@ public class VoluntarioCatalog implements CatalogInterface<Voluntario> {
 	}
 
 	@Override
-	public void set(String tele, Voluntario voluntario) {
+	public void put(String tele, Voluntario voluntario) {
 		catalog.put(tele, voluntario);
 	}
 

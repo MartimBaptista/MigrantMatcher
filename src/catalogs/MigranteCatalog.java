@@ -23,7 +23,7 @@ public class MigranteCatalog implements CatalogInterface<Migrante> {
 	}
 
 	@Override
-	public void set(String tele, Migrante migrante) {
+	public void put(String tele, Migrante migrante) {
 		catalog.put(tele, migrante);
 	}
 

@@ -16,14 +16,14 @@ public class RegistaAjudaHandler {
 	private AjudaCatalog ajudaCatalog;
 	private SMSProvider smsProvider;
 	private String sentCode;
-	private int idConter;
+	private int ajudaId;
 
-	public RegistaAjudaHandler(SMSProvider smsProvider) {
+	public RegistaAjudaHandler(SMSProvider smsProvider, int ajudaCounter) {
 		voluntarioCatalog = VoluntarioCatalog.getInstance();
 		ajudaCatalog = AjudaCatalog.getInstance();
 		ab = new AjudaBuilder();
 		this.smsProvider = smsProvider;
-		idConter = 0;
+		this.ajudaId = ajudaCounter;
 	}
 
 	public void indicaVoluntario(String tele) {
@@ -56,19 +56,10 @@ public class RegistaAjudaHandler {
 			return false;
 	}
 
-	public void finalizarAjudaAlojamento() {
-		Ajuda ajuda = ab.getAlojamento();
-		finalizarAjuda(ajuda);
-	}
-
-	public void finalizarAjudaItem() {
-		Ajuda ajuda = ab.getItem();
-		finalizarAjuda(ajuda);
-	}
-
-	void finalizarAjuda(Ajuda ajuda) {
-		ajudaCatalog.set(String.valueOf(idConter), ajuda);
-		idConter++;
-		voluntarioCatalog.set(voluntario.getTele(), voluntario);
+	public void finalizarAjuda() {
+		ab.setId(ajudaId);
+		Ajuda ajuda = ab.getAjuda();
+		ajudaCatalog.put(String.valueOf(ajudaId), ajuda);
+		voluntarioCatalog.put(voluntario.getTele(), voluntario);
 	}
 }

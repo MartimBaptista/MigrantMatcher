@@ -29,7 +29,7 @@ public class AjudaCatalog implements CatalogInterface<Ajuda> {
 	}
 
 	@Override
-	public void set(String id, Ajuda ajuda) {
+	public void put(String id, Ajuda ajuda) {
 		catalog.put(id, ajuda);
 	}
 
