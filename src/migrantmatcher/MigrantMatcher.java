@@ -3,7 +3,6 @@ package migrantmatcher;
 import java.util.Scanner;
 
 import config.Configuration;
-import sms.*;
 import sorters.*;
 import ui.*;
 
