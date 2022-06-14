@@ -72,7 +72,7 @@ public class RegistaAjudaUI {
 		// 3.3
 		boolean stillSelecting = true;
 		int index = -1;
-		sc.nextLine();
+		sc.nextLine(); // seems to fix a bug here, perhaps by clearing the input buffer, idk
 		while (stillSelecting) {
 			System.out.print("Insira o numero da região do seu alojamento: ");
 			index = Integer.valueOf(sc.nextLine()) - 1;
