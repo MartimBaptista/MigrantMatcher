@@ -1,9 +1,10 @@
-package MigrantMatcher;
+package migrantmatcher;
 
 import java.util.Scanner;
 
 import config.Configuration;
 import sms.*;
+import sorters.*;
 import ui.*;
 
 public class MigrantMatcher {
@@ -12,6 +13,7 @@ public class MigrantMatcher {
 		int ajudaId = 0;
 		Scanner sc = new Scanner(System.in);
 		SMSProvider provider = Configuration.getInstance().getInstanceOfClass("smsProvider", new PidgeonSMSAdapter());
+		Sorter sorter = Configuration.getInstance().getInstanceOfClass("sortType", new sortByDate());
 
 		boolean terminar = false;
 		while (!terminar) {
@@ -20,7 +22,7 @@ public class MigrantMatcher {
 			estado = sc.nextLine().toUpperCase();
 			
 			if (estado.equals("M"))
-				PedeAjudaUI.iniciarPedidoDeAjuda(sc);
+				PedeAjudaUI.iniciarPedidoDeAjuda(sc, sorter);
 
 			else if (estado.equals("A")) {
 				RegistaAjudaUI.iniciarOfertaDeAjuda(sc, provider, ajudaId);
@@ -28,7 +30,6 @@ public class MigrantMatcher {
 				}
 			else if (estado.equals("T"))
 				terminar = true;
-
 			else
 				System.out.println("Valor não reconhecido.");
 		}

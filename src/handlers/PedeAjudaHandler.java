@@ -1,6 +1,7 @@
 package handlers;
 
 import catalogs.*;
+import sorters.Sorter;
 
 import java.util.Collection;
 
@@ -13,16 +14,21 @@ public class PedeAjudaHandler {
 	private AjudaCatalog ajudaCatalog;
 	private MigranteCatalog migranteCatalog;
 	private MigranteBuilder mb;
+	private Sorter sorter;
 
-	public PedeAjudaHandler() {
+	public PedeAjudaHandler(Sorter sorter) {
 		voluntarioCatalog = VoluntarioCatalog.getInstance();
 		ajudaCatalog = AjudaCatalog.getInstance();
 		migranteCatalog = MigranteCatalog.getInstance();
 		mb = new MigranteBuilder();
+		this.sorter = sorter;
 	}
 	
-	public void indicaMigrante(String nome, String tele) {
+	public void indicaNomeMigrante(String nome) {
 		mb.setNome(nome);
+	}
+	
+	public void indicaTeleMigrante(String tele) {
 		mb.setTele(tele);
 	}
 	
@@ -33,9 +39,15 @@ public class PedeAjudaHandler {
 	public void indicaFamiliar(String nome) {
 		mb.addFamiliar(nome);
 	}
-
-	public void indicaRegiao(String regiao) {
-		//TODO	
+	
+	public Collection<String> regioesDisponiveis(){
+		//TODO
+		return null;
+	}
+	
+	public Collection<Ajuda> ajudasDisponiveis(String regiao){
+		//TODO
+		return null;
 	}
 	
 	public void ativarNotificacao() {
@@ -44,11 +56,6 @@ public class PedeAjudaHandler {
 	
 	public void notificaDepois() {
 		//TODO	
-	}
-	
-	public Collection<Ajuda> availableAjudas(String regiao){
-		//TODO
-		return null;
 	}
 	
 	public void indicaAjuda(Ajuda ajuda) {

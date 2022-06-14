@@ -3,42 +3,53 @@ package ui;
 import java.util.Scanner;
 
 import handlers.PedeAjudaHandler;
+import sorters.Sorter;
 
 public class PedeAjudaUI {
-	public static void iniciarPedidoDeAjuda(Scanner sc) {
-		PedeAjudaHandler pedeAjudaHandler = new PedeAjudaHandler();
-		System.out.println("Pretende registar-se individualmente ou com familia?");
-		String registoTipo = sc.nextLine();
-		if (registoTipo.equals("individualmente")) {
-			System.out.println("Indique o seu nome:");
-			String nome = sc.nextLine();
-			System.out.println("Indique o seu numero de telefone:");
-			String numTel = sc.nextLine();
-			pedeAjudaHandler.indicaMigrante(nome, numTel);
+	public static void iniciarPedidoDeAjuda(Scanner sc, Sorter sorter) {
+		PedeAjudaHandler pedeAjudaHandler = new PedeAjudaHandler(sorter);
+		// 1
+		System.out.println("Insira como se pretende registar: 'I' individual,'F' familia.");
+		System.out.print("Registo do tipo:");
+		String registoTipo = sc.nextLine().toUpperCase();
+		// 1.1
+		if (registoTipo.equals("I")) {
+			System.out.print("Indique o seu nome: ");
+			pedeAjudaHandler.indicaNomeMigrante(sc.nextLine());
+			System.out.print("Indique o seu numero de telefone: ");
+			pedeAjudaHandler.indicaTeleMigrante(sc.nextLine());
 		}
-		else if (registoTipo.equals("familia")) {
-			System.out.println("Indique a quantidade de pessoas que existem na familia:");
-			int numPessoas = sc.nextInt();
+		// 1.2
+		else if (registoTipo.equals("F")) {
+			System.out.print("Indique a quantidade de pessoas que existem na familia: ");
+			boolean valid = false;
+			int numPessoas = 0;
+			while (!valid) {
+				numPessoas = sc.nextInt();
+				if(numPessoas > 0)
+					valid = true;
+				else
+					System.out.print("Valor não reconhecido. Reinsira: ");
+			}
 			pedeAjudaHandler.indicaNumFamilia(numPessoas);
-			System.out.println("Insira o nome do cabeÃ§a de familia:");
-			String nome = sc.nextLine();
-			System.out.println("Indique o seu numero de telefone:");
-			String numTel = sc.nextLine();
-			pedeAjudaHandler.indicaMigrante(nome, numTel);
-			
-			System.out.println("Indique agora os nomes de outros familiares");
+			// 1.2.(1,2)
+			System.out.print("Insira o nome do cabeça de familia: ");
+			pedeAjudaHandler.indicaNomeMigrante(sc.nextLine());
+			System.out.print("Insira o numero de telefone do cabeça de familia: ");
+			pedeAjudaHandler.indicaTeleMigrante(sc.nextLine());
+			// 1.2.(3,4,5)
+			System.out.println("Indique agora os nomes de outros familiares.");
 			for (int i = 0; i < numPessoas; i++) {
-				System.out.println("Indique o nome do "+(i+1)+" familiar:");
-				String nomeAgora = sc.nextLine();
-				pedeAjudaHandler.indicaFamiliar(nomeAgora);
+				System.out.println("Indique o nome do " + (i + 1) + " familiar: ");
+				pedeAjudaHandler.indicaFamiliar(sc.nextLine());
 			}
 		}
 		
+		// 2
 		//TODO mostrar lista de regioes
 		
 		System.out.println("Indique uma regiao para onde se podera mover:");
 		String regiao = sc.nextLine();
-		pedeAjudaHandler.indicaRegiao(regiao);
 		
 		//TODO devolver as ajudas nesta regiao
 		//5)  devolver Ajudas (alojamento e outros) dessa regiao   (ORDENAR POR DATA DE DISPONIBILIZAÃ‡ÃƒO CRESCENTE ou
