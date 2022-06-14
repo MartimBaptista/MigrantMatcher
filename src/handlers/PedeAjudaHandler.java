@@ -34,7 +34,7 @@ public class PedeAjudaHandler {
 		mb.addFamiliar(nome);
 	}
 
-	public void indicaRegiao(String reg) {
+	public void indicaRegiao(String regiao) {
 		//TODO	
 	}
 	
