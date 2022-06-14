@@ -4,15 +4,11 @@ import ajudas.*;
 import users.*;
 
 public class AjudaBuilder {
-	private Migrante migrante;
 	private Voluntario voluntario;
 	private String descricao;
 	private int capacidade;
 	private String regiao;
 	
-	public void setMigrante(Migrante migrante) {
-		this.migrante = migrante;
-	}
 	
 	public void setVoluntario(Voluntario voluntario) {
 		this.voluntario = voluntario;
@@ -30,11 +26,10 @@ public class AjudaBuilder {
 		this.regiao = regiao;
 	}
 	
-	public Alojamento getAlojamento() {
-		return new Alojamento(voluntario, capacidade, regiao);
-	}
-	
-	public Item getItem() {
-		return new Item(voluntario, descricao);
+	public Ajuda getAjuda() {
+		if(capacidade > 0 && regiao != null && regiao.length() > 0)
+			return new Alojamento(voluntario, capacidade, regiao);
+		else
+			return new Item(voluntario, descricao);
 	}
 }
