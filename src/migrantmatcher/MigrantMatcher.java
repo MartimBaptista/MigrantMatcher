@@ -2,8 +2,6 @@ package migrantmatcher;
 
 import java.util.Scanner;
 
-import config.Configuration;
-import sorters.*;
 import ui.*;
 
 public class MigrantMatcher {
@@ -11,7 +9,6 @@ public class MigrantMatcher {
 	public static void main(String[] args) {
 		int ajudaId = 0;
 		Scanner sc = new Scanner(System.in);
-		Sorter sorter = Configuration.getInstance().getInstanceOfClass("sortType", new sortByDate());
 
 		boolean terminar = false;
 		while (!terminar) {
@@ -20,7 +17,7 @@ public class MigrantMatcher {
 			estado = sc.nextLine().toUpperCase();
 			
 			if (estado.equals("M"))
-				PedeAjudaUI.iniciarPedidoDeAjuda(sc, sorter);
+				PedeAjudaUI.iniciarPedidoDeAjuda(sc);
 
 			else if (estado.equals("A")) {
 				RegistaAjudaUI.iniciarOfertaDeAjuda(sc, ajudaId);
