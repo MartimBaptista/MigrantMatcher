@@ -31,10 +31,10 @@ public class AjudaBuilder {
 	}
 	
 	public Alojamento getAlojamento() {
-		return new Alojamento(migrante, voluntario, capacidade, regiao);
+		return new Alojamento(voluntario, capacidade, regiao);
 	}
 	
 	public Item getItem() {
-		return new Item(migrante, voluntario, descricao);
+		return new Item(voluntario, descricao);
 	}
 }
