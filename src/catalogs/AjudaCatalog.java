@@ -1,13 +1,16 @@
 package catalogs;
 
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
 import ajudas.Ajuda;
+import sorters.Sorter;
 
 public class AjudaCatalog implements CatalogInterface<Ajuda> {
 	private static AjudaCatalog instance;
+	private Sorter sorter;
 	private Map<String, Ajuda> catalog;
 
 	private AjudaCatalog() {
@@ -35,5 +38,9 @@ public class AjudaCatalog implements CatalogInterface<Ajuda> {
 	@Override
 	public Iterator<Ajuda> getIterator() {
 		return catalog.values().iterator();
+	}
+	
+	public Collection<Ajuda> getSortedAjudas(){
+		return sorter.sort(catalog.values());
 	}
 }
