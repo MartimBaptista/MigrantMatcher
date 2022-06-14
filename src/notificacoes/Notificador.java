@@ -8,17 +8,15 @@ import users.Migrante;
 
 
 public class Notificador {
-	private static Notificador instance;
+	private static Notificador instance = new Notificador();
 	private Map<String, Collection<Migrante>> subscribers;
 
 	private Notificador() {
 		subscribers = new HashMap<>();
-		
+		//TODO
 	}
 
 	public static Notificador getInstance() {
-		if (instance == null)
-			instance = new Notificador();
 		return instance;
 	}
 	

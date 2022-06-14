@@ -7,7 +7,7 @@ import java.util.Map;
 import users.Voluntario;
 
 public class VoluntarioCatalog implements CatalogInterface<Voluntario> {
-	private static VoluntarioCatalog instance;
+	private static VoluntarioCatalog instance = new VoluntarioCatalog();
 	private Map<String, Voluntario> catalog;
 
 	private VoluntarioCatalog() {
@@ -15,11 +15,7 @@ public class VoluntarioCatalog implements CatalogInterface<Voluntario> {
 	}
 
 	public static VoluntarioCatalog getInstance() {
-		if (instance == null) {
-			return new VoluntarioCatalog();
-		} else {
-			return instance;
-		}
+		return instance;
 	}
 
 	@Override

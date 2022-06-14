@@ -9,11 +9,6 @@ import java.util.Properties;
 
 public class Configuration {
 	private static Configuration instance = new Configuration();
-
-	public static Configuration getInstance() {
-		return instance;
-	}
-
 	private Properties props = new Properties();
 
 	private Configuration() {
@@ -24,6 +19,10 @@ public class Configuration {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public static Configuration getInstance() {
+		return instance;
 	}
 	
 	public <E> E getInstanceOfClass(String key, E defaultValue) {

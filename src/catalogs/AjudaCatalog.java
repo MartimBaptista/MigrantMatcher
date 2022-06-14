@@ -11,7 +11,7 @@ import sorters.sortByDate;
 import config.Configuration;
 
 public class AjudaCatalog implements CatalogInterface<Ajuda> {
-	private static AjudaCatalog instance;
+	private static AjudaCatalog instance = new AjudaCatalog();
 	private Sorter sorter;
 	private Map<String, Ajuda> catalog;
 
@@ -21,11 +21,7 @@ public class AjudaCatalog implements CatalogInterface<Ajuda> {
 	}
 
 	public static AjudaCatalog getInstance() {
-		if (instance == null) {
-			return new AjudaCatalog();
-		} else {
-			return instance;
-		}
+		return instance;
 	}
 
 	@Override

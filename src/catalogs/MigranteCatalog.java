@@ -7,7 +7,7 @@ import java.util.Map;
 import users.Migrante;
 
 public class MigranteCatalog implements CatalogInterface<Migrante> {
-	private static MigranteCatalog instance;
+	private static MigranteCatalog instance = new MigranteCatalog();
 	private Map<String, Migrante> catalog;
 
 	private MigranteCatalog() {
@@ -15,11 +15,7 @@ public class MigranteCatalog implements CatalogInterface<Migrante> {
 	}
 
 	public static MigranteCatalog getInstance() {
-		if (instance == null) {
-			return new MigranteCatalog();
-		} else {
-			return instance;
-		}
+		return instance;
 	}
 
 	@Override
