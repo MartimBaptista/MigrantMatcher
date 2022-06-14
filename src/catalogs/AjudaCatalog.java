@@ -7,6 +7,8 @@ import java.util.Map;
 
 import ajudas.Ajuda;
 import sorters.Sorter;
+import sorters.sortByDate;
+import config.Configuration;
 
 public class AjudaCatalog implements CatalogInterface<Ajuda> {
 	private static AjudaCatalog instance;
@@ -15,6 +17,7 @@ public class AjudaCatalog implements CatalogInterface<Ajuda> {
 
 	private AjudaCatalog() {
 		catalog = new HashMap<>();
+		sorter = Configuration.getInstance().getInstanceOfClass("sortType", new sortByDate());
 	}
 
 	public static AjudaCatalog getInstance() {

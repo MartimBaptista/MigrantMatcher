@@ -6,7 +6,7 @@ import ajudas.Ajuda;
 import builders.AjudaBuilder;
 import catalogs.AjudaCatalog;
 import catalogs.VoluntarioCatalog;
-import sms.SMSSender;
+import sms.SMSProvider;
 import users.Voluntario;
 
 public class RegistaAjudaHandler {
@@ -14,15 +14,15 @@ public class RegistaAjudaHandler {
 	private VoluntarioCatalog voluntarioCatalog;
 	private AjudaBuilder ab;
 	private AjudaCatalog ajudaCatalog;
-	private SMSSender smsSender;
+	private SMSProvider smsProvider;
 	private String sentCode;
 	private int idConter;
 
-	public RegistaAjudaHandler(SMSSender smsSender) {
+	public RegistaAjudaHandler(SMSProvider smsProvider) {
 		voluntarioCatalog = VoluntarioCatalog.getInstance();
 		ajudaCatalog = AjudaCatalog.getInstance();
 		ab = new AjudaBuilder();
-		this.smsSender = smsSender;
+		this.smsProvider = smsProvider;
 		idConter = 0;
 	}
 
@@ -45,7 +45,7 @@ public class RegistaAjudaHandler {
 	public void enviarCodigo() {
 		sentCode = String.valueOf(new Random().nextInt(0, 100000));
 		String message = "O seu código é: " + sentCode;
-		smsSender.sendSMS(voluntario.getTele(), message);
+		smsProvider.sendSMS(voluntario.getTele(), message);
 		System.out.println("[System: Sent message: \"" + message + "\" ]");
 	}
 

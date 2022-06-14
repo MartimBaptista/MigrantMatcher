@@ -1,7 +1,9 @@
 import java.util.Scanner;
 
+import config.Configuration;
 import handlers.PedeAjudaHandler;
 import handlers.RegistaAjudaHandler;
+import sms.*;
 
 public class MMpseudo {
 	
@@ -13,6 +15,7 @@ public class MMpseudo {
 	public static void main(String[] args) {
 		
 		Scanner sc = new Scanner(System.in);
+		SMSProvider provider = Configuration.getInstance().getInstanceOfClass("smsProvider", new PidgeonSMSAdapter());
 		String estado;
 		Boolean running = true;
 		while (running) {
@@ -25,18 +28,18 @@ public class MMpseudo {
 				
 			}
 			else if (estado.equals("A")) {
-				iniciarOfertaDeAjuda(sc);
+				iniciarOfertaDeAjuda(sc, provider);
 				running = false;
 				sc.close();
 			}
 			else {
-			//erro
+				System.out.println("Valor não reconhecido.");
 			}
 		}
 	}
 
-	private static void iniciarOfertaDeAjuda(Scanner sc) {
-		RegistaAjudaHandler ajudaHandler = RegistaAjudaHandler.getInstance();
+	private static void iniciarOfertaDeAjuda(Scanner sc, SMSProvider provider) {
+		RegistaAjudaHandler ajudaHandler = new RegistaAjudaHandler(provider);
 		System.out.println("Insira o seu numero de telemovel:");  
 		String numTel = sc.nextLine();
 		ajudaHandler.indicaVoluntario(numTel);
@@ -75,7 +78,7 @@ public class MMpseudo {
 	}
 
 	private static void iniciarPedidoDeAjuda(Scanner sc) {
-		PedeAjudaHandler pedeAjudaHandler = PedeAjudaHandler.getInstance();
+		PedeAjudaHandler pedeAjudaHandler = new PedeAjudaHandler();
 		System.out.println("Pretende registar-se individualmente ou com familia?");
 		String registoTipo = sc.nextLine();
 		if (registoTipo.equals("individualmente")) {

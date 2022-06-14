@@ -1,5 +1,5 @@
 package sms;
 
-public interface SMSAdapter {
+public interface SMSProvider {
 	public void sendSMS(String tele, String message);
 }
