@@ -3,7 +3,7 @@ package catalogs;
 import java.util.Iterator;
 
 public interface CatalogInterface<E> {
-	public void set(String key, E value);
+	public void put(String key, E value);
 
 	public E get(String key);
 
