@@ -4,7 +4,7 @@ import java.util.Collection;
 
 import ajudas.Ajuda;
 
-public class sortByDate implements Sorter {
+public class SortByDate implements Sorter {
 
 	@Override
 	public Collection<Ajuda> sort(Collection<Ajuda> ajudas) {
