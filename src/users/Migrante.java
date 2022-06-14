@@ -16,6 +16,10 @@ public class Migrante {
 		this.familia = familia;
 	}
 	
+	public String getNome() {
+		return this.nome;
+	}
+	
 	public String getTele() {
 		return this.tele;
 	}
