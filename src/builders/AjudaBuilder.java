@@ -4,11 +4,15 @@ import ajudas.*;
 import users.*;
 
 public class AjudaBuilder {
+	private int id;
 	private Voluntario voluntario;
 	private String descricao;
 	private int capacidade;
 	private String regiao;
 	
+	public void setId(int id) {
+		this.id = id;
+	}
 	
 	public void setVoluntario(Voluntario voluntario) {
 		this.voluntario = voluntario;
@@ -28,8 +32,8 @@ public class AjudaBuilder {
 	
 	public Ajuda getAjuda() {
 		if(capacidade > 0 && regiao != null && regiao.length() > 0)
-			return new Alojamento(voluntario, capacidade, regiao);
+			return new Alojamento(id, voluntario, capacidade, regiao);
 		else
-			return new Item(voluntario, descricao);
+			return new Item(id, voluntario, descricao);
 	}
 }
