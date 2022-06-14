@@ -41,4 +41,8 @@ public class Configuration {
 		}
 		return defaultValue;
 	}
+	
+	public String[] getStringArray(String key) {
+		 return ((String) props.get(key)).split(", ");
+	}
 }
