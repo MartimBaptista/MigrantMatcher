@@ -7,8 +7,7 @@ public class SMSSender {
 	private SMSAdapter provider;
 
 	private SMSSender() {
-		Configuration config = Configuration.getInstance();
-		provider = config.getInstanceOfClass("smsProvider", new PidgeonSMSAdapter());
+		provider = Configuration.getInstance().getInstanceOfClass("smsProvider", new PidgeonSMSAdapter());
 	}
 
 	public static SMSSender getInstance() {
