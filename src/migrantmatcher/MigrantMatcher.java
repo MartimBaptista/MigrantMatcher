@@ -12,7 +12,6 @@ public class MigrantMatcher {
 	public static void main(String[] args) {
 		int ajudaId = 0;
 		Scanner sc = new Scanner(System.in);
-		SMSProvider provider = Configuration.getInstance().getInstanceOfClass("smsProvider", new PidgeonSMSAdapter());
 		Sorter sorter = Configuration.getInstance().getInstanceOfClass("sortType", new sortByDate());
 
 		boolean terminar = false;
@@ -25,7 +24,7 @@ public class MigrantMatcher {
 				PedeAjudaUI.iniciarPedidoDeAjuda(sc, sorter);
 
 			else if (estado.equals("A")) {
-				RegistaAjudaUI.iniciarOfertaDeAjuda(sc, provider, ajudaId);
+				RegistaAjudaUI.iniciarOfertaDeAjuda(sc, ajudaId);
 				ajudaId++;
 				}
 			else if (estado.equals("T"))

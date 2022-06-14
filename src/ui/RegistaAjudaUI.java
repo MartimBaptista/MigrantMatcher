@@ -2,18 +2,17 @@ package ui;
 
 import java.util.Scanner;
 
+import config.Configuration;
 import handlers.RegistaAjudaHandler;
+import sms.PidgeonSMSAdapter;
 import sms.SMSProvider;
 
 public class RegistaAjudaUI {
 	
-	private static final String[] REGIOES = { "Alentejo Central", "Alentejo Litoral", "Alto Alentejo", "Baixo Alentejo",
-			"Leziria do Tejo", "Algarve", "Beira Baixa", "Beiras e Serra da Estrela", "Medio Tejo", "Aveiro", "Coimbra",
-			"Leiria", "Viseu", "Lisboa", "Alto Minho", "Alto Tamega", "Porto", "Ave", "Cavado", "Douro",
-			"Tamega e Sousa", "Tras-os-Montes" };
+	private static final String[] REGIOES = Configuration.getInstance().getStringArray("regioes");
 	
-	public static void iniciarOfertaDeAjuda(Scanner sc, SMSProvider provider, int ajudaId) {
-		RegistaAjudaHandler ajudaHandler = new RegistaAjudaHandler(provider, ajudaId);
+	public static void iniciarOfertaDeAjuda(Scanner sc, int ajudaId) {
+		RegistaAjudaHandler ajudaHandler = new RegistaAjudaHandler(ajudaId);
 		// 1
 		System.out.print("Insira o seu numero de telemovel: ");
 		String numTel = sc.nextLine();

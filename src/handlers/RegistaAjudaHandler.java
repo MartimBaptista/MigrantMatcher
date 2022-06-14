@@ -6,6 +6,8 @@ import ajudas.Ajuda;
 import builders.AjudaBuilder;
 import catalogs.AjudaCatalog;
 import catalogs.VoluntarioCatalog;
+import config.Configuration;
+import sms.PidgeonSMSAdapter;
 import sms.SMSProvider;
 import users.Voluntario;
 
@@ -14,15 +16,15 @@ public class RegistaAjudaHandler {
 	private VoluntarioCatalog voluntarioCatalog;
 	private AjudaBuilder ab;
 	private AjudaCatalog ajudaCatalog;
-	private SMSProvider smsProvider;
 	private String sentCode;
 	private int ajudaId;
+	
+	private static SMSProvider provider = Configuration.getInstance().getInstanceOfClass("smsProvider", new PidgeonSMSAdapter());
 
-	public RegistaAjudaHandler(SMSProvider smsProvider, int ajudaCounter) {
+	public RegistaAjudaHandler(int ajudaCounter) {
 		voluntarioCatalog = VoluntarioCatalog.getInstance();
 		ajudaCatalog = AjudaCatalog.getInstance();
 		ab = new AjudaBuilder();
-		this.smsProvider = smsProvider;
 		this.ajudaId = ajudaCounter;
 	}
 
@@ -45,7 +47,7 @@ public class RegistaAjudaHandler {
 	public void enviarCodigo() {
 		sentCode = String.valueOf(new Random().nextInt(0, 100000));
 		String message = "O seu código é: " + sentCode;
-		smsProvider.sendSMS(voluntario.getTele(), message);
+		provider.sendSMS(voluntario.getTele(), message);
 	}
 
 	public boolean confirmaCodigo(String recievedCode) {
