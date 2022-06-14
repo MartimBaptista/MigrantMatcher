@@ -2,7 +2,6 @@ package handlers;
 
 import java.util.Random;
 
-import ajudas.Ajuda;
 import builders.AjudaBuilder;
 import catalogs.AjudaCatalog;
 import catalogs.VoluntarioCatalog;
