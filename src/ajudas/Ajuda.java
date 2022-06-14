@@ -21,8 +21,8 @@ public abstract class Ajuda {
 		return voluntario;
 	}
 	
-	public Migrante assignMigrante() {
-		return migrante;
+	public void assignMigrante(Migrante migrante) {
+		this.migrante = migrante;
 	}
 
 	public Migrante getMigrante() {
