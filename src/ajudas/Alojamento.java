@@ -6,8 +6,8 @@ public class Alojamento extends Ajuda {
 	private int capacidade;
 	private String regiao;
 
-	public Alojamento(Voluntario voluntario, int capacity, String regiao) {
-		super(voluntario);
+	public Alojamento(int id, Voluntario voluntario, int capacity, String regiao) {
+		super(id, voluntario);
 		this.capacidade = capacity;
 		this.regiao = regiao;
 	}

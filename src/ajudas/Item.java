@@ -5,8 +5,8 @@ import users.*;;
 public class Item extends Ajuda {
 	private String descricao;
 
-	public Item(Voluntario voluntario, String descricao) {
-		super(voluntario);
+	public Item(int id, Voluntario voluntario, String descricao) {
+		super(id, voluntario);
 		this.descricao = descricao;
 	}
 
