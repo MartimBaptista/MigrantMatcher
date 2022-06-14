@@ -34,8 +34,10 @@ public class Notificador {
 		subscribers.get(regiao).add(migrante);
 	}
 	
-	public void unsubscribe(Migrante migrante, String regiao) {
-		subscribers.get(regiao).remove(migrante);
+	public void unsubscribe(Migrante migrante) {
+		for (Collection<Migrante> group : subscribers.values()) {
+			group.remove(migrante);
+		}
 	}
 	
 	public void notificar(String regiao) {
