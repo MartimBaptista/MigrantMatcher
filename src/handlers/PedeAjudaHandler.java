@@ -1,6 +1,9 @@
 package handlers;
 
 import catalogs.*;
+
+import java.util.Collection;
+
 import ajudas.Ajuda;
 import builders.MigranteBuilder;
 import users.Migrante;
@@ -52,7 +55,12 @@ public class PedeAjudaHandler {
 		//TODO	
 	}
 	
-	public void indicaAjuda(Ajuda ajuda) { //pode escolher varias
+	public Collection<Ajuda> availableAjudas(String regiao){
+		//TODO
+		return null;
+	}
+	
+	public void indicaAjuda(Ajuda ajuda) {
 		//TODO	
 	}
 	
