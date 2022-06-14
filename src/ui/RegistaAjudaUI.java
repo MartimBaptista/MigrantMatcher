@@ -4,8 +4,6 @@ import java.util.Scanner;
 
 import config.Configuration;
 import handlers.RegistaAjudaHandler;
-import sms.PidgeonSMSAdapter;
-import sms.SMSProvider;
 
 public class RegistaAjudaUI {
 	
