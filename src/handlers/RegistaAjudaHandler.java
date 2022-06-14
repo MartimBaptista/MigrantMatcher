@@ -46,7 +46,6 @@ public class RegistaAjudaHandler {
 		sentCode = String.valueOf(new Random().nextInt(0, 100000));
 		String message = "O seu código é: " + sentCode;
 		smsProvider.sendSMS(voluntario.getTele(), message);
-		System.out.println("[System: Sent message: \"" + message + "\" ]");
 	}
 
 	public boolean confirmaCodigo(String recievedCode) {

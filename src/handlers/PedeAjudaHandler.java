@@ -57,7 +57,7 @@ public class PedeAjudaHandler {
 	
 	public void confirmar() {
 		Migrante mig = mb.getMigrante();
-		migranteCatalog.set(mig.getTele(), mig);
+		migranteCatalog.put(mig.getTele(), mig);
 		//TODO
 	}
 }
