@@ -21,4 +21,8 @@ public class Alojamento extends Ajuda {
 	public String getRegiao() {
 		return this.regiao;
 	}
+	
+	public String toString() {
+		return ("Alojamento para " + this.capacidade + " pessoa(s), em " + this.regiao + ".");
+	}
 }
