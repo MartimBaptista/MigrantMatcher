@@ -43,7 +43,7 @@ public class Notificador {
 	public void notificar(String regiao) {
 		ArrayList<Migrante> toNotify = (ArrayList<Migrante>) subscribers.get(regiao);
 		for (Migrante migrante : toNotify) {
-			provider.sendSMS(migrante.getTele(), ("A região " + regiao + " tem ajudas disponiveis."));
+			provider.sendSMS(migrante.getTele(), ("A região " + regiao + " tem alojamentos disponiveis."));
 		}
 	}
 }
