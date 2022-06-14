@@ -1,2 +1,3 @@
 Caso o Voluntario/emigrante ja existam no sistema
 Sorters still need to be done
+try to correctly implemente notifications with an observer pattern

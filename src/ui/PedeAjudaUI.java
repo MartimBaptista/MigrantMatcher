@@ -2,12 +2,16 @@ package ui;
 
 import java.util.Scanner;
 
+import ajudas.Ajuda;
+import config.Configuration;
 import handlers.PedeAjudaHandler;
-import sorters.Sorter;
 
 public class PedeAjudaUI {
-	public static void iniciarPedidoDeAjuda(Scanner sc, Sorter sorter) {
-		PedeAjudaHandler pedeAjudaHandler = new PedeAjudaHandler(sorter);
+	
+	private static final String[] REGIOES = Configuration.getInstance().getStringArray("regioes");
+	
+	public static void iniciarPedidoDeAjuda(Scanner sc) {
+		PedeAjudaHandler pedeAjudaHandler = new PedeAjudaHandler();
 		// 1
 		System.out.println("Insira como se pretende registar: 'I' individual,'F' familia.");
 		System.out.print("Registo do tipo:");
@@ -44,40 +48,58 @@ public class PedeAjudaUI {
 				pedeAjudaHandler.indicaFamiliar(sc.nextLine());
 			}
 		}
+		pedeAjudaHandler.registarMigrante();
 		
-		// 2
-		//TODO mostrar lista de regioes
-		
-		System.out.println("Indique uma regiao para onde se podera mover:");
-		String regiao = sc.nextLine();
-		
-		//TODO devolver as ajudas nesta regiao
-		//5)  devolver Ajudas (alojamento e outros) dessa regiao   (ORDENAR POR DATA DE DISPONIBILIZA√á√ÉO CRESCENTE ou
-        // Outra forma ser√° primeiro por alojamentos, depois pelos outros items, ordenados dentro de cada categoria de forma aleat√≥ria.
-		
-		//TODO extens√£o 5a: A regiao n√£o tem ajudas
-		/*
-		  TODO OOPS, esta regiao n√£o tem ajudas!
-		  System.out.println("A regiao escolhida nao tem nenhuma ajuda disponivel neste momento.");
-		  //extens√£o 6:
-		  System.out.println("Pretende ser notificado por sms quando existir? (y/n)");
-		  String resposta = sc.nextLine();
-		  if (resposta.equals("y")) {
-		  	then do extra SMS stuff TODO
-		  }
-		 */
-		
-		//TODO devolver lista de ajudas
-		
-		System.out.println("Escolha que ajuda(s) pretende usufruir, escreva 'stop' quando bastar");
-		String sinal = "OK";
-		while (!sinal.equals("stop")) {
-			sinal = sc.nextLine();
-			
-			//TODO escolher ajudas
+		// 2,3,4
+		System.out.println("Regiıes:");
+		for (int i = 0; i < REGIOES.length; i++) {
+			System.out.println((i + 1) + ": " + REGIOES[i]);
 		}
+		boolean stillSelecting = true;
+		int index = -1;
+		while (stillSelecting) {
+			System.out.print("Insira o numero da regi„o para onde se quer mover: ");
+			index = Integer.valueOf(sc.nextLine()) - 1;
+			if(index >= 0 && index < REGIOES.length)
+				stillSelecting = false;
+			else 
+				System.out.println("Valor n„o reconhecido.");
+		}
+		pedeAjudaHandler.registaRegiao(REGIOES[index]);
 		
-		//TODO confirm
-		//TODO atribuir ajuda e contactar voluntarios
+		// 5
+		boolean repeat = true;
+		while (repeat) {
+			Ajuda[] ajudas = (Ajuda[]) pedeAjudaHandler.ajudasDisponiveis().toArray();
+			if (ajudas.length > 0) {
+				for (int i = 0; i < ajudas.length; i++) {
+					System.out.println((i + 1) + ": " + ajudas[i]);
+				}
+				stillSelecting = true;
+				index = -1;
+				while (stillSelecting) {
+					// 6
+					System.out.print("Insira o numero da ajuda que pretende obter: ");
+					index = Integer.valueOf(sc.nextLine()) - 1;
+					if (index >= 0 && index < ajudas.length)
+						stillSelecting = false;
+					else
+						System.out.println("Valor n„o reconhecido.");
+				}
+				// 7
+				pedeAjudaHandler.indicaAjuda(ajudas[index]);
+				
+				// 8,9
+				System.out.print("Obter mais ajudas? ('S' Sim, 'N' N„o): ");
+				if(sc.nextLine().toUpperCase() == "N")
+					repeat = false;
+			}
+			// 5a
+			else {
+
+			}
+		}
+		//TODO
+
 	}
 }
