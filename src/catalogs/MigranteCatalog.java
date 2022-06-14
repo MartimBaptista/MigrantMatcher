@@ -1,5 +1,6 @@
 package catalogs;
 
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -29,8 +30,8 @@ public class MigranteCatalog implements CatalogInterface<Migrante> {
 	}
 
 	@Override
-	public Iterator<Migrante> getIterator() {
-		return catalog.values().iterator();
+	public Collection<Migrante> getValues() {
+		return catalog.values();
 	}
 
 }

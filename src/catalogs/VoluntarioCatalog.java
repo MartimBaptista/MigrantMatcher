@@ -1,5 +1,6 @@
 package catalogs;
 
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -29,7 +30,7 @@ public class VoluntarioCatalog implements CatalogInterface<Voluntario> {
 	}
 
 	@Override
-	public Iterator<Voluntario> getIterator() {
-		return catalog.values().iterator();
+	public Collection<Voluntario> getValues() {
+		return catalog.values();
 	}
 }
