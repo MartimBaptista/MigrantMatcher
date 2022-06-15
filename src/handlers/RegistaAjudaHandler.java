@@ -43,10 +43,11 @@ public class RegistaAjudaHandler {
 		this.ab.setDescription(desc);
 	}
 
-	public void enviarCodigo() {
+	public String enviarCodigo() {
 		this.sentCode = String.valueOf(new Random().nextInt(0, 100000));
 		String message = "O seu código é: " + sentCode;
 		provider.sendSMS(voluntario.getTele(), message);
+		return sentCode;
 	}
 
 	public boolean confirmaCodigo(String recievedCode) {
@@ -57,11 +58,12 @@ public class RegistaAjudaHandler {
 	}
 
 	public void finalizarAjuda() {
+		this.ab.setVoluntario(voluntario);
 		this.ab.setId(ajudaCatalog.getIDConter());
 		ajudaCatalog.increaseIDConter();
 		Ajuda ajuda = ab.getAjuda();
 		this.ajudaCatalog.put(String.valueOf(ajuda.getId()), ajuda);
-		this.voluntarioCatalog.put(voluntario.getTele(), voluntario);
+		this.voluntarioCatalog.put(voluntario.getTele(), this.voluntario);
 		NotificadorVoluntario.getInstance().subscribe(voluntario, ajuda.getId());
 	}
 }
