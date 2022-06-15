@@ -38,7 +38,7 @@ public class PedeAjudaUI {
 			pedeAjudaHandler.indicaNumFamilia(numPessoas);
 			// 1.2.(1,2)
 			System.out.print("Insira o nome do cabeça de familia: ");
-			pedeAjudaHandler.indicaNomeMigrante(sc.nextLine());
+			pedeAjudaHandler.indicaNomeMigrante(sc.nextLine()); //Bug here
 			System.out.print("Insira o numero de telefone do cabeça de familia: ");
 			pedeAjudaHandler.indicaTeleMigrante(sc.nextLine());
 			// 1.2.(3,4,5)
@@ -96,10 +96,12 @@ public class PedeAjudaUI {
 			}
 			// 5a
 			else {
-
+				//5a.5
+				System.out.println("Não existe nenhuma ajuda nesta região :(");
+				System.out.print("Deseja ser notificado quando houver? ('S' Sim, 'N' Não): ");
+				if(sc.nextLine().toUpperCase() == "S")
+					pedeAjudaHandler.ativarNotificacao();
 			}
 		}
-		//TODO
-
 	}
 }
