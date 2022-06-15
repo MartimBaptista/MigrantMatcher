@@ -2,7 +2,7 @@ package handlers;
 
 import catalogs.*;
 import config.Configuration;
-import notificacoes.Notificador;
+import notificacoes.NotificadorMigrante;
 import sorters.*;
 
 import java.util.Collection;
@@ -73,6 +73,6 @@ public class PedeAjudaHandler {
 	}
 	
 	public void ativarNotificacao() {
-		Notificador.getInstance().subscribe(this.migrante, this.regiao);
+		NotificadorMigrante.getInstance().subscribe(this.migrante, this.regiao);
 	}
 }
