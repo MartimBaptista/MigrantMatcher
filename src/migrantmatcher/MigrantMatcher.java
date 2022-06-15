@@ -7,7 +7,6 @@ import ui.*;
 public class MigrantMatcher {
 
 	public static void main(String[] args) {
-		int ajudaId = 0;
 		Scanner sc = new Scanner(System.in);
 
 		boolean terminar = false;
@@ -19,10 +18,9 @@ public class MigrantMatcher {
 			if (estado.equals("M"))
 				PedeAjudaUI.iniciarPedidoDeAjuda(sc);
 
-			else if (estado.equals("V")) {
-				RegistaAjudaUI.iniciarOfertaDeAjuda(sc, ajudaId);
-				ajudaId++;
-				}
+			else if (estado.equals("V"))
+				RegistaAjudaUI.iniciarOfertaDeAjuda(sc);
+
 			else if (estado.equals("T"))
 				terminar = true;
 			else

@@ -2,6 +2,7 @@ package handlers;
 
 import java.util.Random;
 
+import ajudas.Ajuda;
 import builders.AjudaBuilder;
 import catalogs.AjudaCatalog;
 import catalogs.VoluntarioCatalog;
@@ -17,15 +18,13 @@ public class RegistaAjudaHandler {
 	private AjudaBuilder ab;
 	private AjudaCatalog ajudaCatalog;
 	private String sentCode;
-	private int ajudaId;
 
 	private static SMSProvider provider = Configuration.getInstance().getInstanceOfClass("smsProvider", new PidgeonSMSAdapter());
 
-	public RegistaAjudaHandler(int ajudaCounter) {
+	public RegistaAjudaHandler() {
 		this.voluntarioCatalog = VoluntarioCatalog.getInstance();
 		this.ajudaCatalog = AjudaCatalog.getInstance();
 		this.ab = new AjudaBuilder();
-		this.ajudaId = ajudaCounter;
 	}
 
 	public void indicaVoluntario(String tele) {
@@ -58,9 +57,11 @@ public class RegistaAjudaHandler {
 	}
 
 	public void finalizarAjuda() {
-		this.ab.setId(ajudaId);
-		this.ajudaCatalog.put(String.valueOf(ajudaId), ab.getAjuda());
+		this.ab.setId(ajudaCatalog.getIDConter());
+		ajudaCatalog.increaseIDConter();
+		Ajuda ajuda = ab.getAjuda();
+		this.ajudaCatalog.put(String.valueOf(ajuda.getId()), ajuda);
 		this.voluntarioCatalog.put(voluntario.getTele(), voluntario);
-		NotificadorVoluntario.getInstance().subscribe(voluntario, ajudaId);
+		NotificadorVoluntario.getInstance().subscribe(voluntario, ajuda.getId());
 	}
 }

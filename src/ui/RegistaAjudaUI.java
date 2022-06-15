@@ -9,8 +9,8 @@ public class RegistaAjudaUI {
 	
 	private static final String[] REGIOES = Configuration.getInstance().getStringArray("regioes");
 	
-	public static void iniciarOfertaDeAjuda(Scanner sc, int ajudaId) {
-		RegistaAjudaHandler ajudaHandler = new RegistaAjudaHandler(ajudaId);
+	public static void iniciarOfertaDeAjuda(Scanner sc) {
+		RegistaAjudaHandler ajudaHandler = new RegistaAjudaHandler();
 		// 1
 		System.out.print("Insira o seu numero de telemovel: ");
 		String numTel = sc.nextLine();
