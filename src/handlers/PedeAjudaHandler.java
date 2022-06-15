@@ -3,6 +3,7 @@ package handlers;
 import catalogs.*;
 import config.Configuration;
 import notificacoes.NotificadorMigrante;
+import notificacoes.NotificadorVoluntario;
 import sorters.*;
 
 import java.util.Collection;
@@ -68,6 +69,7 @@ public class PedeAjudaHandler {
 	
 	public void indicaAjuda(Ajuda ajuda) {
 		ajuda.assignMigrante(migrante);
+		NotificadorVoluntario.getInstance().notificar(ajuda.getId());
 	}
 	
 	public void ativarNotificacao() {

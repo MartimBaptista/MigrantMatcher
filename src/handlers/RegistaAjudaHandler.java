@@ -6,6 +6,7 @@ import builders.AjudaBuilder;
 import catalogs.AjudaCatalog;
 import catalogs.VoluntarioCatalog;
 import config.Configuration;
+import notificacoes.NotificadorVoluntario;
 import sms.PidgeonSMSAdapter;
 import sms.SMSProvider;
 import users.Voluntario;
@@ -60,5 +61,6 @@ public class RegistaAjudaHandler {
 		this.ab.setId(ajudaId);
 		this.ajudaCatalog.put(String.valueOf(ajudaId), ab.getAjuda());
 		this.voluntarioCatalog.put(voluntario.getTele(), voluntario);
+		NotificadorVoluntario.getInstance().subscribe(voluntario, ajudaId);
 	}
 }

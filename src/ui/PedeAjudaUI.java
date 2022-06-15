@@ -86,7 +86,7 @@ public class PedeAjudaUI {
 					else
 						System.out.println("Valor não reconhecido.");
 				}
-				// 7
+				// 7,10
 				pedeAjudaHandler.indicaAjuda(ajudas[index]);
 				
 				// 8,9
