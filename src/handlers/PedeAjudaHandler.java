@@ -62,8 +62,7 @@ public class PedeAjudaHandler {
 			if(alojamento.getRegiao() != null && (alojamento.getRegiao() != regiao || alojamento.getCapacity() < migrante.getFamilia().length))
 				res.remove(ajuda);
 		}
-		//res.sort()
-		//TODO
+		sorter.sort(res);
 		return res;
 	}
 	
