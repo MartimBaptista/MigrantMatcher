@@ -19,7 +19,6 @@ public class PedeAjudaHandler {
 	private Migrante migrante;
 	private String regiao;
 	private static Sorter sorter = Configuration.getInstance().getInstanceOfClass("sortType", new SortByDate());
-	private static final String[] REGIOES = Configuration.getInstance().getStringArray("regioes");
 
 	public PedeAjudaHandler() {
 		this.migranteCatalog = MigranteCatalog.getInstance();
