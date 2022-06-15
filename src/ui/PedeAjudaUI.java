@@ -102,6 +102,7 @@ public class PedeAjudaUI {
 				System.out.print("Deseja ser notificado quando houver? ('S' Sim, 'N' N�o): ");
 				if(sc.nextLine().toUpperCase() == "S")
 					pedeAjudaHandler.ativarNotificacao();
+				repeat = false;
 			}
 		}
 	}
