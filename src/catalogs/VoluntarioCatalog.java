@@ -1,6 +1,5 @@
 package catalogs;
 
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -29,7 +28,7 @@ public class VoluntarioCatalog implements CatalogInterface<Voluntario> {
 	}
 
 	@Override
-	public Collection<Voluntario> getValues() {
-		return catalog.values();
+	public Voluntario[] getValues() {
+		return catalog.values().toArray(new Voluntario[catalog.size()]);
 	}
 }

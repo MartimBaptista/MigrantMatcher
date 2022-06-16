@@ -1,6 +1,5 @@
 package catalogs;
 
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -31,8 +30,8 @@ public class AjudaCatalog implements CatalogInterface<Ajuda> {
 	}
 
 	@Override
-	public Collection<Ajuda> getValues() {
-		return catalog.values();
+	public Ajuda[] getValues() {
+		return catalog.values().toArray(new Ajuda[catalog.size()]);
 	}
 	
 	public int getIDConter() {
