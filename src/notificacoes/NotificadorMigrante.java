@@ -50,7 +50,10 @@ public class NotificadorMigrante implements Notificador<Migrante,String>{
 	public void notificar(String regiao) {
 		ArrayList<Migrante> toNotify = (ArrayList<Migrante>) subscribers.get(regiao);
 		for (Migrante migrante : toNotify) {
-			provider.sendSMS(migrante.getTele(), ("A região " + regiao + " tem alojamentos disponiveis."));
+			provider.sendSMS(migrante.getTele(), ("A regiï¿½o " + regiao + " tem alojamentos disponiveis."));
 		}
+	}
+	public Map<String, Collection<Migrante>> getSubscribers() {
+		return this.subscribers;
 	}
 }
