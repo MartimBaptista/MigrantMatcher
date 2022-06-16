@@ -19,5 +19,6 @@ public class SortByType implements Sorter {
 				itemCounter--;
 			}
 		}
+		ajudas = newAjudas;
 	}
 }
