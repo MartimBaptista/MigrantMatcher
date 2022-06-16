@@ -6,6 +6,8 @@ import notificacoes.NotificadorMigrante;
 import notificacoes.NotificadorVoluntario;
 import sorters.*;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Collection;
 
 import ajudas.Ajuda;
@@ -55,18 +57,20 @@ public class PedeAjudaHandler {
 	
 	public Ajuda[] ajudasDisponiveis(){
 		Collection<Ajuda> res = ajudaCatalog.getValues();
+		List<Ajuda> toRemove = new ArrayList<>(); // To avoid ConcurrentModificationException
 		for (Ajuda ajuda : res) {
 			if(ajuda.getMigrante() != null)
-				res.remove(ajuda);
+				toRemove.add(ajuda);
 			if(ajuda instanceof Alojamento) {
 				Alojamento alojamento = (Alojamento) ajuda;
 				if(alojamento.getRegiao() != regiao) {
 					if(migrante.getFamilia() != null)
 						if(alojamento.getCapacity() < migrante.getFamilia().length + 1)
-							res.remove(ajuda);
+							toRemove.add(ajuda);
 				}
 			}
 		}
+		res.removeAll(toRemove);
 		sorter.sort(res);
 		return res.toArray(new Ajuda[res.size()]);
 	}
