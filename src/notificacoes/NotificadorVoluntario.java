@@ -34,7 +34,6 @@ public class NotificadorVoluntario implements Notificador<Voluntario, Integer> {
 
 	@Override
 	public void unsubscribeALL(Voluntario voluntario) {
-		//subscribers.entrySet().iterator().next().;
 		for (Map.Entry<Integer,Voluntario> entry : subscribers.entrySet()) {
 			if(entry.getValue().equals(voluntario))
 				subscribers.remove(entry.getKey(), voluntario);
