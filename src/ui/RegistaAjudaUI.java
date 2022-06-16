@@ -58,8 +58,6 @@ public class RegistaAjudaUI {
 		System.out.print("Indique a quantidade de pessoas que o seu alojamento pode albergar: ");
 		int room = sc.nextInt();
 		ajudaHandler.indicaNumDePessoas(room);
-		//TODO Catch incorrect input
-		
 
 		// 3.2
 		System.out.println("Regiões:");
