@@ -13,7 +13,7 @@ public class Item extends Ajuda {
 	public String getDescricao() {
 		return descricao;
 	}
-	
+
 	public String toString() {
 		return (descricao);
 	}

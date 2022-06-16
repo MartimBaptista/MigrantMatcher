@@ -11,8 +11,8 @@ import users.Voluntario;
 public class NotificadorVoluntario implements Notificador<Voluntario, Integer> {
 	private static NotificadorVoluntario instance = new NotificadorVoluntario();
 	private Map<Integer, Voluntario> subscribers;
-	private SMSProvider provider = Configuration.getInstance().getInstanceOfClass("smsProvider", new PidgeonSMSAdapter());
-	
+	private SMSProvider provider = Configuration.getInstance().getInstanceOfClass("smsProvider",
+			new PidgeonSMSAdapter());
 
 	private NotificadorVoluntario() {
 		subscribers = new HashMap<>();
@@ -21,7 +21,7 @@ public class NotificadorVoluntario implements Notificador<Voluntario, Integer> {
 	public static NotificadorVoluntario getInstance() {
 		return instance;
 	}
-	
+
 	@Override
 	public void subscribe(Voluntario voluntario, Integer ajudaID) {
 		subscribers.put(ajudaID, voluntario);
@@ -34,14 +34,15 @@ public class NotificadorVoluntario implements Notificador<Voluntario, Integer> {
 
 	@Override
 	public void unsubscribeALL(Voluntario voluntario) {
-		for (Map.Entry<Integer,Voluntario> entry : subscribers.entrySet()) {
-			if(entry.getValue().equals(voluntario))
+		for (Map.Entry<Integer, Voluntario> entry : subscribers.entrySet()) {
+			if (entry.getValue().equals(voluntario))
 				subscribers.remove(entry.getKey(), voluntario);
 		}
 	}
-	
+
 	@Override
 	public void notificar(Integer ajudaID) {
-		provider.sendSMS(subscribers.get(ajudaID).getTele(), "A ajuda com o id: " + ajudaID + " foi requesitada por um migrante.");
+		provider.sendSMS(subscribers.get(ajudaID).getTele(),
+				"A ajuda com o id: " + ajudaID + " foi requesitada por um migrante.");
 	}
 }

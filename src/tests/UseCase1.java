@@ -28,7 +28,8 @@ class UseCase1 {
 		String[] numerosItem = { "939221811", "919293911", "934829137" };
 		String[] descricaoItem = { "Alimentos", "Roupa", "Produtos de igiene" };
 
-		String[] numerosAmbos = Stream.concat(Arrays.stream(numerosAloj), Arrays.stream(numerosItem)).toArray(String[]::new);
+		String[] numerosAmbos = Stream.concat(Arrays.stream(numerosAloj), Arrays.stream(numerosItem))
+				.toArray(String[]::new);
 
 		// Redirecionar o output
 		ByteArrayOutputStream out = new java.io.ByteArrayOutputStream();

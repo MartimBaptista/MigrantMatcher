@@ -8,9 +8,9 @@ import config.Configuration;
 import handlers.PedeAjudaHandler;
 
 public class PedeAjudaUI {
-	
+
 	private static final String[] REGIOES = Configuration.getInstance().getStringArray("regioes");
-	
+
 	public static void iniciarPedidoDeAjuda(Scanner sc) {
 		PedeAjudaHandler pedeAjudaHandler = new PedeAjudaHandler();
 		// 1
@@ -31,7 +31,7 @@ public class PedeAjudaUI {
 			int numPessoas = 0;
 			while (!valid) {
 				numPessoas = sc.nextInt();
-				if(numPessoas > 0)
+				if (numPessoas > 0)
 					valid = true;
 				else
 					System.out.print("Valor nao reconhecido. Reinsira: ");
@@ -39,7 +39,7 @@ public class PedeAjudaUI {
 			pedeAjudaHandler.indicaNumFamiliar(numPessoas);
 			// 1.2.(1,2)
 			System.out.print("Insira o nome do cabeca de familia: ");
-			pedeAjudaHandler.indicaNomeMigrante(sc.nextLine()); //Bug here
+			pedeAjudaHandler.indicaNomeMigrante(sc.nextLine()); // Bug here
 			System.out.print("Insira o numero de telefone do cabeca de familia: ");
 			pedeAjudaHandler.indicaTeleMigrante(sc.nextLine());
 			// 1.2.(3,4,5)
@@ -50,7 +50,7 @@ public class PedeAjudaUI {
 			}
 		}
 		pedeAjudaHandler.registarMigrante();
-		
+
 		// 2,3,4
 		System.out.println("Regioes:");
 		for (int i = 0; i < REGIOES.length; i++) {
@@ -61,13 +61,13 @@ public class PedeAjudaUI {
 		while (stillSelecting) {
 			System.out.print("Insira o numero da regiao para onde se quer mover: ");
 			index = Integer.valueOf(sc.nextLine()) - 1;
-			if(index >= 0 && index < REGIOES.length)
+			if (index >= 0 && index < REGIOES.length)
 				stillSelecting = false;
-			else 
+			else
 				System.out.println("Valor nao reconhecido.");
 		}
 		pedeAjudaHandler.registaRegiao(REGIOES[index]);
-		
+
 		// 5
 		boolean repeat = true;
 		while (repeat) {
@@ -89,18 +89,18 @@ public class PedeAjudaUI {
 				}
 				// 7,10
 				pedeAjudaHandler.indicaAjuda(ajudas[index]);
-				
+
 				// 8,9
 				System.out.print("Obter mais ajudas? ('S' Sim, 'N' Nao): ");
-				if(sc.nextLine().toUpperCase() == "N")
+				if (sc.nextLine().toUpperCase() == "N")
 					repeat = false;
 			}
 			// 5a
 			else {
-				//5a.5
+				// 5a.5
 				System.out.println("Nao existe nenhuma ajuda nesta regiao :(");
 				System.out.print("Deseja ser notificado quando houver? ('S' Sim, 'N' Nao): ");
-				if(sc.nextLine().toUpperCase() == "S")
+				if (sc.nextLine().toUpperCase() == "S")
 					pedeAjudaHandler.ativarNotificacao();
 				repeat = false;
 			}

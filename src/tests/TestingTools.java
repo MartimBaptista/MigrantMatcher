@@ -14,7 +14,7 @@ public class TestingTools {
 		handler.confirmaCodigo(codigo);
 		handler.finalizarAjuda();
 	}
-	
+
 	static void setupVolItem(String tele, String descricao) {
 		RegistaAjudaHandler handler = new RegistaAjudaHandler();
 		handler.indicaVoluntario(tele);
@@ -23,8 +23,9 @@ public class TestingTools {
 		handler.confirmaCodigo(codigo);
 		handler.finalizarAjuda();
 	}
-	
-	static Ajuda[] setupMigranteFamilia(PedeAjudaHandler handler, String nome, String tele, String[] familiares, String regiao) {
+
+	static Ajuda[] setupMigranteFamilia(PedeAjudaHandler handler, String nome, String tele, String[] familiares,
+			String regiao) {
 		handler.indicaNomeMigrante(nome);
 		handler.indicaTeleMigrante(tele);
 		handler.indicaNumFamiliar(familiares.length);
@@ -35,7 +36,7 @@ public class TestingTools {
 		handler.registaRegiao(regiao);
 		return handler.ajudasDisponiveis();
 	}
-	
+
 	static Ajuda[] setupMigranteIndividual(PedeAjudaHandler handler, String nome, String tele, String regiao) {
 		handler.indicaNomeMigrante(nome);
 		handler.indicaTeleMigrante(tele);
@@ -43,11 +44,11 @@ public class TestingTools {
 		handler.registaRegiao(regiao);
 		return handler.ajudasDisponiveis();
 	}
-	
+
 	static Ajuda getAjudaWithID(Ajuda[] ajudas, int ID) {
 		for (int i = 0; i < ajudas.length; i++) {
 			Ajuda ajuda = ajudas[i];
-			if(ajuda.getId() == ID)
+			if (ajuda.getId() == ID)
 				return ajuda;
 		}
 		return null;

@@ -6,9 +6,9 @@ import config.Configuration;
 import handlers.RegistaAjudaHandler;
 
 public class RegistaAjudaUI {
-	
+
 	private static final String[] REGIOES = Configuration.getInstance().getStringArray("regioes");
-	
+
 	public static void iniciarOfertaDeAjuda(Scanner sc) {
 		RegistaAjudaHandler ajudaHandler = new RegistaAjudaHandler();
 		// 1
@@ -31,14 +31,13 @@ public class RegistaAjudaUI {
 			else if (tipoAjuda.equals("I")) {
 				stillSelecting = false;
 				casoItem(sc, ajudaHandler);
-			} 
-			else
+			} else
 				System.out.println("Valor não reconhecido.");
 		}
 
 		// 5
 		ajudaHandler.enviarCodigo();
-		
+
 		// 6
 		System.out.print("Insira o código recebido para confirmar a sua oferta de ajuda: ");
 		boolean confirmado = false;
@@ -72,9 +71,9 @@ public class RegistaAjudaUI {
 		while (stillSelecting) {
 			System.out.print("Insira o numero da região do seu alojamento: ");
 			index = Integer.valueOf(sc.nextLine()) - 1;
-			if(index >= 0 && index < REGIOES.length)
+			if (index >= 0 && index < REGIOES.length)
 				stillSelecting = false;
-			else 
+			else
 				System.out.println("Valor não reconhecido.");
 		}
 		ajudaHandler.indicaRegiao(REGIOES[index]);

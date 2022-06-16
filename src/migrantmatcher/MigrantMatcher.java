@@ -12,9 +12,10 @@ public class MigrantMatcher {
 		boolean terminar = false;
 		while (!terminar) {
 			String estado;
-			System.out.print("Insira o seu estatuto: 'M' para migrante, 'V' para voluntario ('T' para terminar o programa): ");
+			System.out.print(
+					"Insira o seu estatuto: 'M' para migrante, 'V' para voluntario ('T' para terminar o programa): ");
 			estado = sc.nextLine().toUpperCase();
-			
+
 			if (estado.equals("M"))
 				PedeAjudaUI.iniciarPedidoDeAjuda(sc);
 

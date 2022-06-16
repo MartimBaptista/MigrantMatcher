@@ -29,45 +29,44 @@ public class PedeAjudaHandler {
 		this.ajudaCatalog = AjudaCatalog.getInstance();
 		this.mb = new MigranteBuilder();
 	}
-	
+
 	public void indicaNomeMigrante(String nome) {
 		this.mb.setNome(nome);
 	}
-	
+
 	public void indicaTeleMigrante(String tele) {
 		this.mb.setTele(tele);
 	}
-	
+
 	public void indicaNumFamiliar(int num) {
 		this.mb.setFamiliaSize(num);
 	}
-	
+
 	public void indicaFamiliar(String nome) {
 		this.mb.addFamiliar(nome);
 	}
-	
+
 	public void registarMigrante() {
 		this.migrante = mb.getMigrante();
 		this.migranteCatalog.put(migrante.getTele(), migrante);
 	}
-	
+
 	public void registaRegiao(String regiao) {
 		this.regiao = regiao;
 	}
-	
-	
-	public Ajuda[] ajudasDisponiveis(){
+
+	public Ajuda[] ajudasDisponiveis() {
 		Ajuda[] res = ajudaCatalog.getValues();
-		List<Ajuda> toRemove = new ArrayList<>(); 									// To avoid ConcurrentModificationException
+		List<Ajuda> toRemove = new ArrayList<>(); // To avoid ConcurrentModificationException
 		for (Ajuda ajuda : res) {
-			if(ajuda.getMigrante() != null) 										//check if not taken
+			if (ajuda.getMigrante() != null) // check if not taken
 				toRemove.add(ajuda);
-			if(ajuda instanceof Alojamento) { 										//check if instanceof Alojamento
+			if (ajuda instanceof Alojamento) { // check if instanceof Alojamento
 				Alojamento alojamento = (Alojamento) ajuda;
-				if(alojamento.getRegiao() != regiao) 								//check if the same region
+				if (alojamento.getRegiao() != regiao) // check if the same region
 					toRemove.add(ajuda);
-				if(migrante.getFamilia() != null)									//check if migrante has a family
-					if(alojamento.getCapacity() < migrante.getFamilia().length + 1) //check if enough space for family
+				if (migrante.getFamilia() != null) // check if migrante has a family
+					if (alojamento.getCapacity() < migrante.getFamilia().length + 1) // check if enough space for family
 						toRemove.add(ajuda);
 			}
 		}
@@ -78,13 +77,12 @@ public class PedeAjudaHandler {
 		res = sorter.sort(res);
 		return res;
 	}
-	
-	
+
 	public void indicaAjuda(Ajuda ajuda) {
 		ajuda.assignMigrante(migrante);
 		NotificadorVoluntario.getInstance().notificar(ajuda.getId());
 	}
-	
+
 	public void ativarNotificacao() {
 		NotificadorMigrante.getInstance().subscribe(this.migrante, this.regiao);
 	}

@@ -1,4 +1,5 @@
 package config;
+
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -20,17 +21,17 @@ public class Configuration {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public static Configuration getInstance() {
 		return instance;
 	}
-	
+
 	public <E> E getInstanceOfClass(String key, E defaultValue) {
 		String klassName = (String) props.get(key);
 		if (klassName == null) {
 			return defaultValue;
 		}
-		
+
 		try {
 			@SuppressWarnings("unchecked")
 			Class<E> klass = (Class<E>) Class.forName(klassName);
@@ -41,8 +42,8 @@ public class Configuration {
 		}
 		return defaultValue;
 	}
-	
+
 	public String[] getStringArray(String key) {
-		 return ((String) props.get(key)).split(", ");
+		return ((String) props.get(key)).split(", ");
 	}
 }

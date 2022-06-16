@@ -19,7 +19,8 @@ public class RegistaAjudaHandler {
 	private AjudaCatalog ajudaCatalog;
 	private String sentCode;
 
-	private static SMSProvider provider = Configuration.getInstance().getInstanceOfClass("smsProvider", new PidgeonSMSAdapter());
+	private static SMSProvider provider = Configuration.getInstance().getInstanceOfClass("smsProvider",
+			new PidgeonSMSAdapter());
 
 	public RegistaAjudaHandler() {
 		this.voluntarioCatalog = VoluntarioCatalog.getInstance();

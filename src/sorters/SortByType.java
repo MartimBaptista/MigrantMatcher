@@ -10,11 +10,10 @@ public class SortByType implements Sorter {
 		int alojamentoCounter = 0;
 		int itemCounter = ajudas.length - 1;
 		for (Ajuda ajuda : ajudas) {
-			if(ajuda instanceof Alojamento) {
+			if (ajuda instanceof Alojamento) {
 				newAjudas[alojamentoCounter] = ajuda;
 				alojamentoCounter++;
-			}
-			else {
+			} else {
 				newAjudas[itemCounter] = ajuda;
 				itemCounter--;
 			}
