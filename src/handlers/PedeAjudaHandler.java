@@ -53,7 +53,7 @@ public class PedeAjudaHandler {
 	}
 	
 	
-	public Collection<Ajuda> ajudasDisponiveis(){
+	public Ajuda[] ajudasDisponiveis(){
 		Collection<Ajuda> res = ajudaCatalog.getValues();
 		for (Ajuda ajuda : res) {
 			System.out.println(ajuda.getClass());
@@ -66,7 +66,7 @@ public class PedeAjudaHandler {
 			}
 		}
 		sorter.sort(res);
-		return res;
+		return res.toArray(new Ajuda[res.size()]);
 	}
 	
 	
