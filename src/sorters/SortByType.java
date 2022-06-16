@@ -13,7 +13,7 @@ public class SortByType implements Sorter {
 		int alojamentoCounter = 0;
 		int itemCounter = ajudasArray.length - 1;
 		for (Ajuda ajuda : ajudas) {
-			if(((Alojamento) ajuda).getRegiao() != null) {
+			if(ajuda instanceof Alojamento) {
 				ajudasArray[alojamentoCounter] = ajuda;
 				alojamentoCounter++;
 			}
