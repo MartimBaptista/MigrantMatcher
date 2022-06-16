@@ -7,8 +7,9 @@ import notificacoes.NotificadorVoluntario;
 import sorters.*;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.List;
-import java.util.Collection;
 
 import ajudas.Ajuda;
 import ajudas.Alojamento;
@@ -56,23 +57,26 @@ public class PedeAjudaHandler {
 	
 	
 	public Ajuda[] ajudasDisponiveis(){
-		Collection<Ajuda> res = ajudaCatalog.getValues();
-		List<Ajuda> toRemove = new ArrayList<>(); // To avoid ConcurrentModificationException
+		Ajuda[] res = ajudaCatalog.getValues();
+		List<Ajuda> toRemove = new ArrayList<>(); 									// To avoid ConcurrentModificationException
 		for (Ajuda ajuda : res) {
-			if(ajuda.getMigrante() != null)
+			if(ajuda.getMigrante() != null) 										//check if not taken
 				toRemove.add(ajuda);
-			if(ajuda instanceof Alojamento) {
+			if(ajuda instanceof Alojamento) { 										//check if instanceof Alojamento
 				Alojamento alojamento = (Alojamento) ajuda;
-				if(alojamento.getRegiao() != regiao) {
-					if(migrante.getFamilia() != null)
-						if(alojamento.getCapacity() < migrante.getFamilia().length + 1)
-							toRemove.add(ajuda);
-				}
+				if(alojamento.getRegiao() != regiao) 								//check if the same region
+					toRemove.add(ajuda);
+				if(migrante.getFamilia() != null)									//check if migrante has a family
+					if(alojamento.getCapacity() < migrante.getFamilia().length + 1) //check if enough space for family
+						toRemove.add(ajuda);
 			}
 		}
-		res.removeAll(toRemove);
+		// I hate this, but it works just fine
+		List<Ajuda> resList = new LinkedList<>(Arrays.asList(res));
+		resList.removeAll(toRemove);
+		res = resList.toArray(new Ajuda[resList.size()]);
 		sorter.sort(res);
-		return res.toArray(new Ajuda[res.size()]);
+		return res;
 	}
 	
 	
