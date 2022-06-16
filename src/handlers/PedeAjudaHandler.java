@@ -75,7 +75,7 @@ public class PedeAjudaHandler {
 		List<Ajuda> resList = new LinkedList<>(Arrays.asList(res));
 		resList.removeAll(toRemove);
 		res = resList.toArray(new Ajuda[resList.size()]);
-		sorter.sort(res);
+		res = sorter.sort(res);
 		return res;
 	}
 	
