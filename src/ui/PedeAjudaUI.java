@@ -1,5 +1,6 @@
 package ui;
 
+import java.util.Collection;
 import java.util.Scanner;
 
 import ajudas.Ajuda;
@@ -33,13 +34,13 @@ public class PedeAjudaUI {
 				if(numPessoas > 0)
 					valid = true;
 				else
-					System.out.print("Valor nï¿½o reconhecido. Reinsira: ");
+					System.out.print("Valor nao reconhecido. Reinsira: ");
 			}
-			pedeAjudaHandler.indicaNumFamilia(numPessoas);
+			pedeAjudaHandler.indicaNumFamiliar(numPessoas);
 			// 1.2.(1,2)
-			System.out.print("Insira o nome do cabeï¿½a de familia: ");
+			System.out.print("Insira o nome do cabeca de familia: ");
 			pedeAjudaHandler.indicaNomeMigrante(sc.nextLine()); //Bug here
-			System.out.print("Insira o numero de telefone do cabeï¿½a de familia: ");
+			System.out.print("Insira o numero de telefone do cabeca de familia: ");
 			pedeAjudaHandler.indicaTeleMigrante(sc.nextLine());
 			// 1.2.(3,4,5)
 			System.out.println("Indique agora os nomes de outros familiares.");
@@ -51,27 +52,27 @@ public class PedeAjudaUI {
 		pedeAjudaHandler.registarMigrante();
 		
 		// 2,3,4
-		System.out.println("Regiï¿½es:");
+		System.out.println("Regioes:");
 		for (int i = 0; i < REGIOES.length; i++) {
 			System.out.println((i + 1) + ": " + REGIOES[i]);
 		}
 		boolean stillSelecting = true;
 		int index = -1;
 		while (stillSelecting) {
-			System.out.print("Insira o numero da regiï¿½o para onde se quer mover: ");
+			System.out.print("Insira o numero da regiao para onde se quer mover: ");
 			index = Integer.valueOf(sc.nextLine()) - 1;
 			if(index >= 0 && index < REGIOES.length)
 				stillSelecting = false;
 			else 
-				System.out.println("Valor nï¿½o reconhecido.");
+				System.out.println("Valor nao reconhecido.");
 		}
 		pedeAjudaHandler.registaRegiao(REGIOES[index]);
 		
 		// 5
 		boolean repeat = true;
 		while (repeat) {
-			int tam = pedeAjudaHandler.ajudasDisponiveis().size();
-			Ajuda[] ajudas = pedeAjudaHandler.ajudasDisponiveis().toArray(new Ajuda[tam]);
+			Collection<Ajuda> ajudasCollection = pedeAjudaHandler.ajudasDisponiveis();
+			Ajuda[] ajudas = ajudasCollection.toArray(new Ajuda[ajudasCollection.size()]);
 			if (ajudas.length > 0) {
 				for (int i = 0; i < ajudas.length; i++) {
 					System.out.println((i + 1) + ": " + ajudas[i]);
@@ -85,25 +86,28 @@ public class PedeAjudaUI {
 					if (index >= 0 && index < ajudas.length)
 						stillSelecting = false;
 					else
-						System.out.println("Valor nï¿½o reconhecido.");
+						System.out.println("Valor nao reconhecido.");
 				}
 				// 7,10
 				pedeAjudaHandler.indicaAjuda(ajudas[index]);
 				
 				// 8,9
-				System.out.print("Obter mais ajudas? ('S' Sim, 'N' Nï¿½o): ");
+				System.out.print("Obter mais ajudas? ('S' Sim, 'N' Nao): ");
 				if(sc.nextLine().toUpperCase() == "N")
 					repeat = false;
 			}
 			// 5a
 			else {
 				//5a.5
-				System.out.println("Nï¿½o existe nenhuma ajuda nesta regiï¿½o :(");
-				System.out.print("Deseja ser notificado quando houver? ('S' Sim, 'N' Nï¿½o): ");
+				System.out.println("Nao existe nenhuma ajuda nesta regiao :(");
+				System.out.print("Deseja ser notificado quando houver? ('S' Sim, 'N' Nao): ");
 				if(sc.nextLine().toUpperCase() == "S")
 					pedeAjudaHandler.ativarNotificacao();
 				repeat = false;
 			}
 		}
+		System.out.println("Obrigado pela sua cooperação!");
+		System.out.println("---------------------------//---------------------------");
+		System.out.println("");
 	}
 }
