@@ -56,13 +56,15 @@ public class PedeAjudaHandler {
 	public Ajuda[] ajudasDisponiveis(){
 		Collection<Ajuda> res = ajudaCatalog.getValues();
 		for (Ajuda ajuda : res) {
-			System.out.println(ajuda.getClass());
 			if(ajuda.getMigrante() != null)
 				res.remove(ajuda);
 			if(ajuda instanceof Alojamento) {
 				Alojamento alojamento = (Alojamento) ajuda;
-				if(alojamento.getRegiao() != regiao || alojamento.getCapacity() < migrante.getFamilia().length + 1)
-					res.remove(ajuda);
+				if(alojamento.getRegiao() != regiao) {
+					if(migrante.getFamilia() != null)
+						if(alojamento.getCapacity() < migrante.getFamilia().length + 1)
+							res.remove(ajuda);
+				}
 			}
 		}
 		sorter.sort(res);
