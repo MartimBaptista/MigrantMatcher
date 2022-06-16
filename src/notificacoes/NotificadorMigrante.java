@@ -53,7 +53,4 @@ public class NotificadorMigrante implements Notificador<Migrante,String>{
 			provider.sendSMS(migrante.getTele(), ("A região " + regiao + " tem alojamentos disponiveis."));
 		}
 	}
-	public Map<String, Collection<Migrante>> getSubscribers() {
-		return this.subscribers;
-	}
 }
