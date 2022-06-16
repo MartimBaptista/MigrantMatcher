@@ -5,7 +5,7 @@ import ajudas.*;
 public class SortByType implements Sorter {
 
 	@Override
-	public void sort(Ajuda[] ajudas) {
+	public Ajuda[] sort(Ajuda[] ajudas) {
 		Ajuda[] newAjudas = new Ajuda[ajudas.length];
 		int alojamentoCounter = 0;
 		int itemCounter = ajudas.length - 1;
@@ -19,6 +19,6 @@ public class SortByType implements Sorter {
 				itemCounter--;
 			}
 		}
-		ajudas = newAjudas;
+		return newAjudas;
 	}
 }
