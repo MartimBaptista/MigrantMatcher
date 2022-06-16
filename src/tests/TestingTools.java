@@ -1,11 +1,5 @@
 package tests;
 
-import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
-
 import ajudas.Ajuda;
 import handlers.PedeAjudaHandler;
 import handlers.RegistaAjudaHandler;
@@ -30,11 +24,10 @@ public class TestingTools {
 		handler.finalizarAjuda();
 	}
 	
-	static Collection<Ajuda> setupMigranteFamilia(String nome, String tele, int numFamilia, String[] familiares, String regiao) {
-		PedeAjudaHandler handler = new PedeAjudaHandler();
+	static Ajuda[] setupMigranteFamilia(PedeAjudaHandler handler, String nome, String tele, String[] familiares, String regiao) {
 		handler.indicaNomeMigrante(nome);
 		handler.indicaTeleMigrante(tele);
-		handler.indicaNumFamiliar(numFamilia);
+		handler.indicaNumFamiliar(familiares.length);
 		for (int i = 0; i < familiares.length; i++) {
 			handler.indicaFamiliar(familiares[i]);
 		}
@@ -43,12 +36,20 @@ public class TestingTools {
 		return handler.ajudasDisponiveis();
 	}
 	
-	static Collection<Ajuda> setupMigranteIndividual(String nome, String tele, String regiao) {
-		PedeAjudaHandler handler = new PedeAjudaHandler();
+	static Ajuda[] setupMigranteIndividual(PedeAjudaHandler handler, String nome, String tele, String regiao) {
 		handler.indicaNomeMigrante(nome);
 		handler.indicaTeleMigrante(tele);
 		handler.registarMigrante();
 		handler.registaRegiao(regiao);
 		return handler.ajudasDisponiveis();
+	}
+	
+	static Ajuda getAjudaWithID(Ajuda[] ajudas, int ID) {
+		for (int i = 0; i < ajudas.length; i++) {
+			Ajuda ajuda = ajudas[i];
+			if(ajuda.getId() == ID)
+				return ajuda;
+		}
+		return null;
 	}
 }
