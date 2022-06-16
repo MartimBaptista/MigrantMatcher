@@ -6,15 +6,16 @@ public class SortByType implements Sorter {
 
 	@Override
 	public void sort(Ajuda[] ajudas) {
+		Ajuda[] newAjudas = new Ajuda[ajudas.length];
 		int alojamentoCounter = 0;
 		int itemCounter = ajudas.length - 1;
 		for (Ajuda ajuda : ajudas) {
 			if(ajuda instanceof Alojamento) {
-				ajudas[alojamentoCounter] = ajuda;
+				newAjudas[alojamentoCounter] = ajuda;
 				alojamentoCounter++;
 			}
 			else {
-				ajudas[itemCounter] = ajuda;
+				newAjudas[itemCounter] = ajuda;
 				itemCounter--;
 			}
 		}
