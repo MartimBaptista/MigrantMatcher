@@ -71,8 +71,7 @@ public class PedeAjudaUI {
 		// 5
 		boolean repeat = true;
 		while (repeat) {
-			Collection<Ajuda> ajudasCollection = pedeAjudaHandler.ajudasDisponiveis();
-			Ajuda[] ajudas = ajudasCollection.toArray(new Ajuda[ajudasCollection.size()]);
+			Ajuda[] ajudas = pedeAjudaHandler.ajudasDisponiveis();
 			if (ajudas.length > 0) {
 				for (int i = 0; i < ajudas.length; i++) {
 					System.out.println((i + 1) + ": " + ajudas[i]);
