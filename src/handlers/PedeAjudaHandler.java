@@ -35,7 +35,7 @@ public class PedeAjudaHandler {
 		this.mb.setTele(tele);
 	}
 	
-	public void indicaNumFamilia(int num) {
+	public void indicaNumFamiliar(int num) {
 		this.mb.setFamiliaSize(num);
 	}
 	
@@ -56,11 +56,14 @@ public class PedeAjudaHandler {
 	public Collection<Ajuda> ajudasDisponiveis(){
 		Collection<Ajuda> res = ajudaCatalog.getValues();
 		for (Ajuda ajuda : res) {
+			System.out.println(ajuda.getClass());
 			if(ajuda.getMigrante() != null)
 				res.remove(ajuda);
-			Alojamento alojamento = (Alojamento) ajuda;
-			if(alojamento.getRegiao() != null && (alojamento.getRegiao() != regiao || alojamento.getCapacity() < migrante.getFamilia().length))
-				res.remove(ajuda);
+			if(ajuda instanceof Alojamento) {
+				Alojamento alojamento = (Alojamento) ajuda;
+				if(alojamento.getRegiao() != regiao || alojamento.getCapacity() < migrante.getFamilia().length + 1)
+					res.remove(ajuda);
+			}
 		}
 		sorter.sort(res);
 		return res;
